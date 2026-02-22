@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TITLE_TEXT from "../ascii.txt?raw";
+import Header from "../components/Header.astro";
 ---
 
-<Layout title="erick - web developer">
-  <div>
+<Layout title="erick — web developer">
+  <div class="h-svh flex flex-col gap-8 justify-between">
+    <Header />
     <pre
-      class="overflow-x-hidden w-full text-center font-mono text-sm absolute select-none bottom-0">{TITLE_TEXT}</pre>
+      class="w-full text-center select-none overflow-hidden">{TITLE_TEXT}</pre>
   </div>
 </Layout>
