@@ -18,8 +18,46 @@
       <a href="/blog" class="hover:bg-white hover:text-blue px-0.5">Writing</a>
     </nav>
 
-    <button class="hover:bg-white hover:text-blue uppercase cursor-pointer"
-      >[email]</button
+    <button
+      type="button"
+      class="hover:bg-white hover:text-blue uppercase cursor-pointer"
+      data-email="erick.prussak@gmail.com"
+      data-default-label="[email]"
+      data-copied-label="[copied]"
     >
+      [email]
+    </button>
   </div>
 </header>
+
+<script>
+  const emailButton = document.querySelector(
+    "button[data-email][data-default-label][data-copied-label]",
+  );
+
+  const isEmailButton = emailButton instanceof HTMLButtonElement;
+
+  if (isEmailButton) {
+    let resetTimer: number;
+
+    emailButton.addEventListener("click", async () => {
+      const email = emailButton.dataset.email;
+      if (!email) return;
+
+      try {
+        await navigator.clipboard.writeText(email);
+        emailButton.textContent = emailButton.dataset.copiedLabel ?? "[copied]";
+      } catch {
+        emailButton.textContent = "[failed to copy]";
+      }
+
+      if (resetTimer) {
+        clearTimeout(resetTimer);
+      }
+
+      resetTimer = setTimeout(() => {
+        emailButton.textContent = emailButton.dataset.defaultLabel ?? "[email]";
+      }, 2000);
+    });
+  }
+</script>
