@@ -6,6 +6,11 @@ import { Image } from "astro:assets";
 import ImageQSMP from "./qsmp.png";
 import ImageTMDB from "./tmdb.png";
 import ImageMyContacts from "./mycontacts.png";
+
+import FaleLogo from "./assets/experiences/falecomigo.svg";
+import QuackSLogo from "./assets/experiences/quacks.svg";
+import UpLogo from "./assets/experiences/up.svg";
+import UniLogo from "./assets/experiences/uni.svg";
 ---
 
 <Layout title="erick — web developer">
@@ -153,6 +158,140 @@ import ImageMyContacts from "./mycontacts.png";
       </article>
     </section>
 
-    <section id="experiences" class="max-w-266 mx-auto space-y-8"></section>
+    <section id="experiences" class="max-w-266 mx-auto space-y-8">
+      <article>
+        <div
+          class="after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0 relative flex justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <FaleLogo class="size-12" />
+
+            <div class="flex flex-col gap-0.5">
+              <strong class="font-semibold text-lg/5.5">falecomigo.ai</strong>
+              <span class="text-base/none pb-1">Frontend developer</span>
+            </div>
+          </div>
+
+          <div class="text-blue text-base font-normal">
+            <time datetime="2025">2025</time>
+          </div>
+        </div>
+
+        <div
+          class="after:content-[''] after:block after:h-16 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative py-2 pl-3"
+        >
+          <p class="text-xs font-light max-w-162">
+            At UpBase, I demonstrated my expertise in NextJS, React Native and
+            TypeScript by contributing to the development of mobile and web
+            projects. I worked closely with client feedback to align with their
+            needs and consistently deliver results.
+          </p>
+        </div>
+      </article>
+
+      <article>
+        <div
+          class="after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0 relative flex justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <QuackSLogo class="size-12" />
+
+            <div class="flex flex-col gap-0.5">
+              <strong class="font-semibold text-lg/5.5">Quackity Studios</strong
+              >
+              <span class="text-base/none pb-1">Frontend developer</span>
+            </div>
+          </div>
+
+          <div class="text-blue text-base font-normal">
+            <time datetime="2023">2023</time>
+            -
+            <time datetime="2024">2024</time>
+          </div>
+        </div>
+
+        <div
+          class="after:content-[''] after:block after:h-16 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative py-2 pl-3"
+        >
+          <p class="text-xs font-light max-w-162">
+            As part of an international team, I contributed to multilingual
+            projects built with Next.js and TypeScript, designed to handle high
+            volumes of simultaneous users, with a strong focus on optimizing
+            user experience and performance.
+          </p>
+        </div>
+      </article>
+
+      <article>
+        <div
+          class="after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0 relative flex justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <UpLogo class="size-12" />
+
+            <div class="flex flex-col gap-0.5">
+              <strong class="font-semibold text-lg/5.5"
+                >UpBase Consultoria</strong
+              >
+              <span class="text-base/none pb-1">Frontend Intern</span>
+            </div>
+          </div>
+
+          <div class="text-blue text-base font-normal">
+            <time datetime="2022">2022</time>
+            -
+            <time datetime="2023">2023</time>
+          </div>
+        </div>
+
+        <div
+          class="after:content-[''] after:block after:h-16 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative py-2 pl-3"
+        >
+          <p class="text-xs font-light max-w-162">
+            At UpBase, I demonstrated my expertise in NextJS, React Native and
+            TypeScript by contributing to the development of mobile and web
+            projects. I worked closely with client feedback to align with their
+            needs and consistently deliver results.
+          </p>
+        </div>
+      </article>
+
+      <article>
+        <div
+          class="after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0 relative flex justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <UpLogo class="size-12" />
+
+            <div class="flex flex-col gap-0.5">
+              <strong class="font-semibold text-lg/5.5"
+                >Universidade Cesumar</strong
+              >
+              <span class="text-base/none pb-1"
+                >Associate Degree in Software Development</span
+              >
+            </div>
+          </div>
+
+          <div class="text-blue text-base font-normal">
+            <time datetime="2022">2022</time>
+            -
+            <time datetime="2025">2025</time>
+          </div>
+        </div>
+
+        <div
+          class="after:content-[''] after:block after:h-16 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative py-2 pl-3"
+        >
+          <p class="text-xs font-light max-w-162">
+            I gained hands-on experience across the full software development
+            lifecycle, from requirements gathering to deployment and
+            maintenance. I also worked on interface design from wireframes to
+            high-fidelity prototypes, and strengthened my skills in algorithms,
+            data structures (Java, C), and database management with MySQL.
+          </p>
+        </div>
+      </article>
+    </section>
   </main>
 </Layout>
