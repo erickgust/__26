@@ -35,4 +35,5 @@ p {
 
   --color-blue: oklch(0.447 0.27 268.311);
   --color-white: oklch(0.903 0.012 286.153);
+  --color-black: oklch(0.216 0.006 301.047);
 }
