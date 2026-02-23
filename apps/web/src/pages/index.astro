@@ -15,14 +15,16 @@ import ImageMyContacts from "./mycontacts.png";
       class="w-full text-center select-none overflow-hidden">{TITLE_TEXT}</pre>
   </div>
 
-  <main class="bg-white text-black">
-    <section id="projects" class="max-w-266 mx-auto py-16 space-y-8">
+  <main
+    class="bg-white text-black py-16 space-y-16 selection:text-white selection:bg-blue"
+  >
+    <section id="projects" class="max-w-266 mx-auto space-y-8">
       <article>
         <div
           class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
         >
           <span
-            class="text-white bg-blue selection:text-blue selection:bg-white px-0.5 py-px"
+            class="text-white bg-blue selection:text-blue! selection:bg-white px-0.5 py-px"
             >Tailwind + TypeScript + Next.js</span
           >
 
@@ -30,12 +32,12 @@ import ImageMyContacts from "./mycontacts.png";
             href="https://qsmpco.netlify.app/"
             target="_blank"
             rel="noopener"
-            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 selection:text-white selection:bg-blue uppercase"
+            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
             >Live Site [↗]</a
           >
         </div>
         <div
-          class="flex justify-between selection:bg-blue selection:text-white pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
+          class="flex justify-between pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
         >
           <h1 class="w-95 font-sans text-6.5xl leading-none normal-case">
             QSMP.co
@@ -66,7 +68,7 @@ import ImageMyContacts from "./mycontacts.png";
           class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
         >
           <span
-            class="text-white bg-blue selection:text-blue selection:bg-white px-0.5 py-px"
+            class="text-white bg-blue selection:text-blue! selection:bg-white px-0.5 py-px"
             >React.js + TypeScript + Tailwind</span
           >
 
@@ -74,12 +76,12 @@ import ImageMyContacts from "./mycontacts.png";
             href="https://erickgust-tmdb.netlify.app/"
             target="_blank"
             rel="noopener"
-            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 selection:text-white selection:bg-blue uppercase"
+            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
             >Live Site [↗]</a
           >
         </div>
         <div
-          class="flex justify-between selection:bg-blue selection:text-white pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
+          class="flex justify-between pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
         >
           <h1 class="w-95 font-sans text-6.5xl leading-none normal-case">
             TMDB Movies
@@ -110,7 +112,7 @@ import ImageMyContacts from "./mycontacts.png";
           class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
         >
           <span
-            class="text-white bg-blue selection:text-blue selection:bg-white px-0.5 py-px"
+            class="text-white bg-blue selection:text-blue! selection:bg-white px-0.5 py-px"
             >React.js + TypeScript + Node.js</span
           >
 
@@ -118,12 +120,12 @@ import ImageMyContacts from "./mycontacts.png";
             href="https://github.com/erickgust/my-contacts-front/"
             target="_blank"
             rel="noopener"
-            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 selection:text-white selection:bg-blue uppercase"
+            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
             >Repository [↗]</a
           >
         </div>
         <div
-          class="flex justify-between selection:bg-blue selection:text-white pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
+          class="flex justify-between pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
         >
           <h1 class="w-95 font-sans text-6.5xl leading-none normal-case">
             MyContacts
@@ -150,5 +152,7 @@ import ImageMyContacts from "./mycontacts.png";
         </div>
       </article>
     </section>
+
+    <section id="experiences" class="max-w-266 mx-auto space-y-8"></section>
   </main>
 </Layout>
