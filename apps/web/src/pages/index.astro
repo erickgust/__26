@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import TITLE_TEXT from "../ascii.txt?raw";
 import Header from "../components/Header.astro";
+import { Image } from "astro:assets";
+import ImageQSMP from "./qsmp.png";
 ---
 
 <Layout title="erick — web developer">
@@ -10,4 +12,53 @@ import Header from "../components/Header.astro";
     <pre
       class="w-full text-center select-none overflow-hidden">{TITLE_TEXT}</pre>
   </div>
+
+  <main class="bg-white text-black">
+    <section class="max-w-266 mx-auto py-16">
+      <article>
+        <div
+          class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
+        >
+          <span
+            class="text-white bg-blue selection:text-blue selection:bg-white px-0.5 py-px"
+            >Tailwind + TypeScript + Next.js</span
+          >
+
+          <a
+            href="https://qsmpco.netlify.app/"
+            target="_blank"
+            rel="noopener"
+            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 selection:text-white selection:bg-blue uppercase"
+            >Live Site [🡭]</a
+          >
+        </div>
+        <div
+          class="flex justify-between selection:bg-blue selection:text-white pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
+        >
+          <h1 class="w-95 font-sans text-6.5xl leading-none normal-case">
+            QSMP.co
+          </h1>
+
+          <div class="max-w-64 text-xs font-light [&>p+p]:mt-4">
+            <p>
+              The official portal of the QSMP project, a multilingual Minecraft
+              server with real-time translation, connecting content creators
+              from different regions and languages.
+            </p>
+            <p>
+              The website's goal was to centralize the main information about
+              the server and its participants, as well as sections dedicated to
+              project updates.
+            </p>
+          </div>
+
+          <Image
+            src={ImageQSMP}
+            alt="QSMP website preview"
+            class="select-none pointer-events-none"
+          />
+        </div>
+      </article>
+    </section>
+  </main>
 </Layout>
