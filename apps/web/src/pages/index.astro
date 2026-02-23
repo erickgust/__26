@@ -4,6 +4,8 @@ import TITLE_TEXT from "../ascii.txt?raw";
 import Header from "../components/Header.astro";
 import { Image } from "astro:assets";
 import ImageQSMP from "./qsmp.png";
+import ImageTMDB from "./tmdb.png";
+import ImageMyContacts from "./mycontacts.png";
 ---
 
 <Layout title="erick — web developer">
@@ -14,7 +16,7 @@ import ImageQSMP from "./qsmp.png";
   </div>
 
   <main class="bg-white text-black">
-    <section id="projects" class="max-w-266 mx-auto py-16">
+    <section id="projects" class="max-w-266 mx-auto py-16 space-y-8">
       <article>
         <div
           class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
@@ -55,6 +57,94 @@ import ImageQSMP from "./qsmp.png";
           <Image
             src={ImageQSMP}
             alt="QSMP website preview"
+            class="select-none pointer-events-none"
+          />
+        </div>
+      </article>
+      <article>
+        <div
+          class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
+        >
+          <span
+            class="text-white bg-blue selection:text-blue selection:bg-white px-0.5 py-px"
+            >React.js + TypeScript + Tailwind</span
+          >
+
+          <a
+            href="https://erickgust-tmdb.netlify.app/"
+            target="_blank"
+            rel="noopener"
+            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 selection:text-white selection:bg-blue uppercase"
+            >Live Site [🡭]</a
+          >
+        </div>
+        <div
+          class="flex justify-between selection:bg-blue selection:text-white pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
+        >
+          <h1 class="w-95 font-sans text-6.5xl leading-none normal-case">
+            TMDB Movies
+          </h1>
+
+          <div class="max-w-64 text-xs font-light [&>p+p]:mt-4">
+            <p>
+              TMDB Movies is a project that lets you browse a list of trending
+              movies, filtered by various genres. By selecting a movie, you can
+              view details such as rating, synopsis, cast, genres, and
+              certification.
+            </p>
+            <p>
+              built in TypeScript and React to explore React Query features
+              combined with React Router.
+            </p>
+          </div>
+
+          <Image
+            src={ImageTMDB}
+            alt="TMDB Movies website preview"
+            class="select-none pointer-events-none"
+          />
+        </div>
+      </article>
+      <article>
+        <div
+          class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
+        >
+          <span
+            class="text-white bg-blue selection:text-blue selection:bg-white px-0.5 py-px"
+            >React.js + TypeScript + Node.js</span
+          >
+
+          <a
+            href="https://github.com/erickgust/my-contacts-front/"
+            target="_blank"
+            rel="noopener"
+            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 selection:text-white selection:bg-blue uppercase"
+            >Repository [🡭]</a
+          >
+        </div>
+        <div
+          class="flex justify-between selection:bg-blue selection:text-white pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
+        >
+          <h1 class="w-95 font-sans text-6.5xl leading-none normal-case">
+            MyContacts
+          </h1>
+
+          <div class="max-w-64 text-xs font-light [&>p+p]:mt-4">
+            <p>
+              MyContacts was a project where I explored React and React Router
+              more in-depth by building a contact management feature, as well as
+              organize them by categories.
+            </p>
+            <p>
+              I also had the opportunity to develop a REST API in Node.js with
+              Express, which connects to a Docker environment running
+              PostgreSQL.
+            </p>
+          </div>
+
+          <Image
+            src={ImageMyContacts}
+            alt="MyContacts website preview"
             class="select-none pointer-events-none"
           />
         </div>
