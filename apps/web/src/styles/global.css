@@ -3,6 +3,14 @@
 /* Add your theme customizations here. */
 /* See the TailwindCSS v4 docs for more info: https://tailwindcss.com/docs/v4-beta */
 
+@font-face {
+  font-family: "Geist Pixel";
+  src: url("/fonts/GeistPixel-Square.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* CSS Reset */
 * {
   box-sizing: border-box;
@@ -32,8 +40,11 @@ p {
 
 @theme {
   --font-mono: var(--font-geist-mono), monospace;
+  --font-sans: "Geist Pixel", system-ui, sans-serif;
 
   --color-blue: oklch(0.447 0.27 268.311);
   --color-white: oklch(0.903 0.012 286.153);
   --color-black: oklch(0.216 0.006 301.047);
+
+  --text-6.5xl: 4rem;
 }
