@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@__26/env": "workspace:*",
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/node": "^9.5.2",
     "astro": "^5.16.11",
     "dotenv": "catalog:",
@@ -20,6 +21,7 @@
     "@__26/config": "workspace:*",
     "@tailwindcss/vite": "^4.1.18",
     "tailwindcss": "^4.1.18",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "wrangler": "^4.68.0"
   }
 }
