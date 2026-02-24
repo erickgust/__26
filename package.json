@@ -19,6 +19,7 @@
     "check-types": "turbo check-types",
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
+    "deploy:web": "turbo -F web deploy",
     "check": "oxlint && oxfmt --write"
   },
   "dependencies": {
