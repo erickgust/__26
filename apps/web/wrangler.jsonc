@@ -10,4 +10,10 @@
   "observability": {
     "enabled": true,
   },
+  "routes": [
+    {
+      "pattern": "erickgust.dev",
+      "custom_domain": true,
+    },
+  ],
 }
