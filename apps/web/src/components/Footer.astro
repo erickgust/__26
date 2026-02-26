@@ -1,14 +1,17 @@
 ---
 import { SITE } from "../data/site";
+import ScrambleIn from "./ui/ScrambleIn";
 ---
 
 <footer class="bg-black text-white selection:bg-white selection:text-black">
   <div class="h-120 max-w-360 mx-auto py-4 flex flex-col px-8">
     <div class="grid place-items-center flex-1">
       <div class="text-center">
-        <p class="font-light mb-1 text-xl">( Reach out )</p>
+        <p class="font-light mb-1 text-xl">
+          <ScrambleIn client:visible text="( Reach out )" />
+        </p>
         <strong class="font-normal text-4xl lowercase">
-          {SITE.email}
+          <ScrambleIn client:visible text={SITE.email} />
         </strong>
       </div>
     </div>
@@ -21,7 +24,7 @@ import { SITE } from "../data/site";
           target="_blank"
           rel="noopener noreferrer"
         >
-          linkedin [↗]
+          <ScrambleIn client:visible text="LinkedIn [↗]" />
         </a>
         <a
           class="uppercase cursor-pointer"
@@ -29,7 +32,7 @@ import { SITE } from "../data/site";
           target="_blank"
           rel="noopener noreferrer"
         >
-          github [↗]
+          <ScrambleIn client:visible text="Github [↗]" />
         </a>
       </div>
 
