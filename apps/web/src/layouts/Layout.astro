@@ -53,20 +53,22 @@ const { title } = Astro.props;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <Font cssVariable="--font-geist-mono" preload />
 
-    <script type="application/ld+json">
-      {
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Erick Gustavo",
-        "url": "https://erickgust.dev",
-        "jobTitle": "Web Developer",
-        "email": "hello@erickgust.dev",
-        "sameAs": [
+        name: "Erick Gustavo",
+        url: "https://erickgust.dev",
+        jobTitle: "Web Developer",
+        email: "hello@erickgust.dev",
+        sameAs: [
           "https://www.linkedin.com/in/erickgust/",
-          "https://github.com/erickgust"
-        ]
-      }
-    </script>
+          "https://github.com/erickgust",
+        ],
+      })}
+    />
   </head>
   <body class="min-h-screen bg-blue text-white font-mono text-sm uppercase">
     <a
