@@ -1,0 +1,18 @@
+---
+interface Props {
+  from: string;
+  to?: string;
+}
+
+const { from, to } = Astro.props;
+---
+
+<div class="text-blue text-base font-normal">
+  <time datetime={from}>{from}</time>
+  {to && (
+    <>
+      {" - "}
+      <time datetime={to}>{to}</time>
+    </>
+  )}
+</div>
