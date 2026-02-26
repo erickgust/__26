@@ -1,10 +1,14 @@
+---
+import { SITE } from "../data/site";
+---
+
 <footer class="bg-black text-white selection:bg-white selection:text-black">
   <div class="h-120 max-w-360 mx-auto py-4 flex flex-col px-8">
     <div class="grid place-items-center flex-1">
       <div class="text-center">
         <p class="font-light mb-1 text-xl">( Reach out )</p>
         <strong class="font-normal text-4xl lowercase">
-          hello@erickgust.dev
+          {SITE.email}
         </strong>
       </div>
     </div>
@@ -13,7 +17,7 @@
       <div class="flex gap-8">
         <a
           class="uppercase cursor-pointer"
-          href="https://www.linkedin.com/in/erickgust/"
+          href={SITE.socials.linkedin}
           target="_blank"
           rel="noopener"
         >
@@ -21,7 +25,7 @@
         </a>
         <a
           class="uppercase cursor-pointer"
-          href="https://github.com/erickgust"
+          href={SITE.socials.github}
           target="_blank"
           rel="noopener"
         >

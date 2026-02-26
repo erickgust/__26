@@ -4,6 +4,7 @@ import TITLE_TEXT from "../ascii.txt?raw";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { Image } from "astro:assets";
+import { SITE } from "../data/site";
 import ImageQSMP from "../assets/images/qsmp.png";
 import ImageTMDB from "../assets/images/tmdb.png";
 import ImageMyContacts from "../assets/images/mycontacts.png";
@@ -14,7 +15,7 @@ import UpLogo from "../assets/experiences/up.svg";
 import UniLogo from "../assets/experiences/uni.svg";
 ---
 
-<Layout title="erick — web developer">
+<Layout title={SITE.title}>
   <div class="h-svh flex flex-col gap-8 justify-between">
     <Header />
     <pre
