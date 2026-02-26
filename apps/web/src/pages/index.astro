@@ -16,19 +16,23 @@ import UniLogo from "../assets/experiences/uni.svg";
 ---
 
 <Layout title={SITE.title}>
-  <div class="h-svh flex flex-col gap-8 justify-between">
+  <section
+    aria-label="Introduction"
+    class="h-svh flex flex-col gap-8 justify-between"
+  >
     <Header />
     <pre
       aria-hidden="true"
       role="img"
       class="w-full text-center select-none overflow-hidden">{TITLE_TEXT}</pre>
-  </div>
+  </section>
 
   <main
     id="main-content"
     class="bg-white text-black py-16 space-y-16 selection:text-white selection:bg-blue"
   >
     <section id="projects" class="max-w-266 mx-auto space-y-8">
+      <h2 class="sr-only">Projects</h2>
       <article>
         <div
           class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
@@ -49,9 +53,9 @@ import UniLogo from "../assets/experiences/uni.svg";
         <div
           class="flex justify-between pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
         >
-          <h1 class="w-95 font-sans text-6.5xl leading-none normal-case">
+          <h3 class="w-95 font-sans text-6.5xl leading-none normal-case">
             QSMP.co
-          </h1>
+          </h3>
 
           <div class="max-w-64 text-xs font-light [&>p+p]:mt-4">
             <p>
@@ -93,9 +97,9 @@ import UniLogo from "../assets/experiences/uni.svg";
         <div
           class="flex justify-between pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
         >
-          <h1 class="w-95 font-sans text-6.5xl leading-none normal-case">
+          <h3 class="w-95 font-sans text-6.5xl leading-none normal-case">
             TMDB Movies
-          </h1>
+          </h3>
 
           <div class="max-w-64 text-xs font-light [&>p+p]:mt-4">
             <p>
@@ -137,9 +141,9 @@ import UniLogo from "../assets/experiences/uni.svg";
         <div
           class="flex justify-between pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
         >
-          <h1 class="w-95 font-sans text-6.5xl leading-none normal-case">
+          <h3 class="w-95 font-sans text-6.5xl leading-none normal-case">
             MyContacts
-          </h1>
+          </h3>
 
           <div class="max-w-64 text-xs font-light [&>p+p]:mt-4">
             <p>
@@ -164,6 +168,7 @@ import UniLogo from "../assets/experiences/uni.svg";
     </section>
 
     <section id="experiences" class="max-w-266 mx-auto space-y-8">
+      <h2 class="sr-only">Experiences</h2>
       <article>
         <div
           class="after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0 relative flex justify-between"
@@ -172,7 +177,7 @@ import UniLogo from "../assets/experiences/uni.svg";
             <FaleLogo class="size-12" aria-hidden="true" />
 
             <div class="flex flex-col gap-0.5">
-              <strong class="font-semibold text-lg/5.5">falecomigo.ai</strong>
+              <h3 class="font-semibold text-lg/5.5">falecomigo.ai</h3>
               <span class="text-base/none pb-1">Frontend developer</span>
             </div>
           </div>
@@ -203,8 +208,7 @@ import UniLogo from "../assets/experiences/uni.svg";
             <QuackSLogo class="size-12" aria-hidden="true" />
 
             <div class="flex flex-col gap-0.5">
-              <strong class="font-semibold text-lg/5.5">Quackity Studios</strong
-              >
+              <h3 class="font-semibold text-lg/5.5">Quackity Studios</h3>
               <span class="text-base/none pb-1">Frontend developer</span>
             </div>
           </div>
@@ -236,9 +240,7 @@ import UniLogo from "../assets/experiences/uni.svg";
             <UpLogo class="size-12" aria-hidden="true" />
 
             <div class="flex flex-col gap-0.5">
-              <strong class="font-semibold text-lg/5.5"
-                >UpBase Consultoria</strong
-              >
+              <h3 class="font-semibold text-lg/5.5">UpBase Consultoria</h3>
               <span class="text-base/none pb-1">Frontend Intern</span>
             </div>
           </div>
@@ -270,9 +272,7 @@ import UniLogo from "../assets/experiences/uni.svg";
             <UniLogo class="size-12" aria-hidden="true" />
 
             <div class="flex flex-col gap-0.5">
-              <strong class="font-semibold text-lg/5.5"
-                >Universidade Cesumar</strong
-              >
+              <h3 class="font-semibold text-lg/5.5">Universidade Cesumar</h3>
               <span class="text-base/none pb-1"
                 >Associate Degree in Software Development</span
               >
