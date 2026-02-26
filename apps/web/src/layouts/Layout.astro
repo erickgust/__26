@@ -18,6 +18,9 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta name="description" content={SITE.description} />
+    <link rel="canonical" href={Astro.url.href} />
+    <meta name="theme-color" content="#2424E6" />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={SITE.description} />
@@ -49,6 +52,21 @@ const { title } = Astro.props;
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <Font cssVariable="--font-geist-mono" preload />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Erick Gustavo",
+        "url": "https://erickgust.dev",
+        "jobTitle": "Web Developer",
+        "email": "hello@erickgust.dev",
+        "sameAs": [
+          "https://www.linkedin.com/in/erickgust/",
+          "https://github.com/erickgust"
+        ]
+      }
+    </script>
   </head>
   <body class="min-h-screen bg-blue text-white font-mono text-sm uppercase">
     <slot />
