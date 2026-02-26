@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import TITLE_TEXT from "../ascii.txt?raw";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { Image } from "astro:assets";
+import * as Project from "../components/Project";
 import { SITE } from "../data/site";
 import ImageQSMP from "../assets/images/qsmp.png";
 import ImageTMDB from "../assets/images/tmdb.png";
@@ -33,31 +33,16 @@ import UniLogo from "../assets/experiences/uni.svg";
   >
     <section id="projects" class="max-w-266 mx-auto space-y-8">
       <h2 class="sr-only">Projects</h2>
-      <article>
-        <div
-          class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
-        >
-          <span
-            class="text-white bg-blue selection:text-blue! selection:bg-white px-0.5 py-px"
-            >Tailwind + TypeScript + Next.js</span
-          >
 
-          <a
-            href="https://qsmpco.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
-            >Live Site [↗]</a
-          >
-        </div>
-        <div
-          class="flex justify-between pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
-        >
-          <h3 class="w-95 font-sans text-6.5xl leading-none normal-case">
-            QSMP.co
-          </h3>
-
-          <div class="max-w-64 text-xs font-light [&>p+p]:mt-4">
+      <Project.Root>
+        <Project.Header
+          tech="Tailwind + TypeScript + Next.js"
+          href="https://qsmpco.netlify.app/"
+          label="Live Site"
+        />
+        <Project.Body>
+          <Project.Title>QSMP.co</Project.Title>
+          <Project.Description>
             <p>
               The official portal of the QSMP project, a multilingual Minecraft
               server with real-time translation, connecting content creators
@@ -68,40 +53,20 @@ import UniLogo from "../assets/experiences/uni.svg";
               the server and its participants, as well as sections dedicated to
               project updates.
             </p>
-          </div>
+          </Project.Description>
+          <Project.Preview src={ImageQSMP} alt="QSMP website preview" />
+        </Project.Body>
+      </Project.Root>
 
-          <Image
-            src={ImageQSMP}
-            alt="QSMP website preview"
-            class="select-none pointer-events-none"
-          />
-        </div>
-      </article>
-      <article>
-        <div
-          class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
-        >
-          <span
-            class="text-white bg-blue selection:text-blue! selection:bg-white px-0.5 py-px"
-            >React.js + TypeScript + Tailwind</span
-          >
-
-          <a
-            href="https://erickgust-tmdb.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
-            >Live Site [↗]</a
-          >
-        </div>
-        <div
-          class="flex justify-between pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
-        >
-          <h3 class="w-95 font-sans text-6.5xl leading-none normal-case">
-            TMDB Movies
-          </h3>
-
-          <div class="max-w-64 text-xs font-light [&>p+p]:mt-4">
+      <Project.Root>
+        <Project.Header
+          tech="React.js + TypeScript + Tailwind"
+          href="https://erickgust-tmdb.netlify.app/"
+          label="Live Site"
+        />
+        <Project.Body>
+          <Project.Title>TMDB Movies</Project.Title>
+          <Project.Description>
             <p>
               TMDB Movies is a project that lets you browse a list of trending
               movies, filtered by various genres. By selecting a movie, you can
@@ -112,40 +77,20 @@ import UniLogo from "../assets/experiences/uni.svg";
               built in TypeScript and React to explore React Query features
               combined with React Router.
             </p>
-          </div>
+          </Project.Description>
+          <Project.Preview src={ImageTMDB} alt="TMDB Movies website preview" />
+        </Project.Body>
+      </Project.Root>
 
-          <Image
-            src={ImageTMDB}
-            alt="TMDB Movies website preview"
-            class="select-none pointer-events-none"
-          />
-        </div>
-      </article>
-      <article>
-        <div
-          class="text-xs relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
-        >
-          <span
-            class="text-white bg-blue selection:text-blue! selection:bg-white px-0.5 py-px"
-            >React.js + TypeScript + Node.js</span
-          >
-
-          <a
-            href="https://github.com/erickgust/my-contacts-front/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
-            >Repository [↗]</a
-          >
-        </div>
-        <div
-          class="flex justify-between pl-4 pt-4 after:content-[''] after:block after:h-26 after:bg-blue after:absolute after:left-0 after:top-0 after:w-px relative"
-        >
-          <h3 class="w-95 font-sans text-6.5xl leading-none normal-case">
-            MyContacts
-          </h3>
-
-          <div class="max-w-64 text-xs font-light [&>p+p]:mt-4">
+      <Project.Root>
+        <Project.Header
+          tech="React.js + TypeScript + Node.js"
+          href="https://github.com/erickgust/my-contacts-front/"
+          label="Repository"
+        />
+        <Project.Body>
+          <Project.Title>MyContacts</Project.Title>
+          <Project.Description>
             <p>
               MyContacts was a project where I explored React and React Router
               more in-depth by building a contact management feature, as well as
@@ -156,15 +101,13 @@ import UniLogo from "../assets/experiences/uni.svg";
               Express, which connects to a Docker environment running
               PostgreSQL.
             </p>
-          </div>
-
-          <Image
+          </Project.Description>
+          <Project.Preview
             src={ImageMyContacts}
             alt="MyContacts website preview"
-            class="select-none pointer-events-none"
           />
-        </div>
-      </article>
+        </Project.Body>
+      </Project.Root>
     </section>
 
     <section id="experiences" class="max-w-266 mx-auto space-y-8">
