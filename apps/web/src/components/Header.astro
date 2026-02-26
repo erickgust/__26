@@ -14,7 +14,7 @@ import { SITE } from "../data/site";
       <span>Web Developer</span>
     </a>
 
-    <nav class="inline-flex flex-col gap-0.5">
+    <nav aria-label="Main navigation" class="inline-flex flex-col gap-0.5">
       <a href="#experiences" class="hover:bg-white hover:text-blue px-0.5"
         >Experiences</a
       >
@@ -26,6 +26,7 @@ import { SITE } from "../data/site";
 
     <button
       type="button"
+      aria-label="Copy email address to clipboard"
       class="hover:bg-white hover:text-blue uppercase cursor-pointer after:content-[attr(data-copied-label)] after:block after:h-0 after:invisible after:overflow-hidden after:pointer-events-none text-start"
       data-email={SITE.email}
       data-default-label="[email]"
@@ -44,13 +45,13 @@ import { SITE } from "../data/site";
     <a
       href={SITE.socials.linkedin}
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
       class="hover:bg-white hover:text-blue uppercase">Linkedin [↗]</a
     >
     <a
       href={SITE.socials.github}
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
       class="hover:bg-white hover:text-blue uppercase">Github [↗]</a
     >
   </div>
