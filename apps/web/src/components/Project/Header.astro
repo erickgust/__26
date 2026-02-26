@@ -1,4 +1,7 @@
 ---
+import ScrambleIn from "../ui/ScrambleIn";
+import ScrambleText from "../ui/ScrambleText";
+
 interface Props {
   tech: string;
   href: string;
@@ -13,7 +16,7 @@ const { tech, href, label } = Astro.props;
 >
   <span
     class="text-white bg-blue selection:text-blue! selection:bg-white px-0.5 py-px"
-    >{tech}</span
+    ><ScrambleIn client:visible text={tech} /></span
   >
 
   <a
@@ -21,6 +24,6 @@ const { tech, href, label } = Astro.props;
     target="_blank"
     rel="noopener noreferrer"
     class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
-    >{label} [↗]</a
+    ><ScrambleText client:visible text={`${label} [↗]`} /></a
   >
 </div>
