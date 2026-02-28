@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../data/site";
+---
+
+<Layout title={`404 — ${SITE.name}`}>
+  <main
+    id="main-content"
+    class="min-h-screen flex flex-col items-center justify-center gap-8 px-8 text-center selection:bg-white selection:text-blue"
+  >
+    <div class="space-y-1">
+      <p class="text-sm">error</p>
+      <h1 class="font-sans text-6xl leading-none">404</h1>
+    </div>
+
+    <p class="text-sm max-w-64">
+      The page you're looking for doesn't exist or has been moved.
+    </p>
+
+    <a
+      href="/"
+      class="text-sm relative uppercase hover:bg-white hover:text-blue before:absolute before:-inset-y-1 before:inset-x-0 before:content-['']"
+    >
+      [ Go home ]
+    </a>
+  </main>
+</Layout>
