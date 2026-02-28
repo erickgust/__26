@@ -81,7 +81,7 @@ import ScrambleText from "./ui/ScrambleText";
   const isEmailButton = emailButton instanceof HTMLButtonElement;
 
   if (isEmailButton) {
-    let resetTimer: NodeJS.Timeout | null = null;
+    let resetTimer: ReturnType<typeof setTimeout> | null = null;
 
     emailButton.addEventListener("click", async () => {
       const email = emailButton.dataset.email;
