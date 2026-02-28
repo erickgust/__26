@@ -72,53 +72,6 @@ import ScrambleText from "./ui/ScrambleText";
 </header>
 
 <script>
-  const emailButton = document.querySelector(
-    "button[data-email][data-default-label][data-copied-label]",
-  );
-
-  const timeLabel = document.querySelector("span[data-local-time]");
-
-  const isEmailButton = emailButton instanceof HTMLButtonElement;
-
-  if (isEmailButton) {
-    let resetTimer: ReturnType<typeof setTimeout> | null = null;
-
-    emailButton.addEventListener("click", async () => {
-      const email = emailButton.dataset.email;
-      if (!email) return;
-
-      try {
-        await navigator.clipboard.writeText(email);
-        emailButton.textContent = emailButton.dataset.copiedLabel ?? "[copied]";
-      } catch {
-        emailButton.textContent = "[failed to copy]";
-      }
-
-      if (resetTimer) {
-        clearTimeout(resetTimer);
-      }
-
-      resetTimer = setTimeout(() => {
-        emailButton.textContent = emailButton.dataset.defaultLabel ?? "[email]";
-      }, 2000);
-    });
-  }
-
-  const updateTime = () => {
-    if (!(timeLabel instanceof HTMLSpanElement)) return;
-
-    const now = new Date();
-    const formatter = new Intl.DateTimeFormat("en-US", {
-      timeZone: "America/Sao_Paulo",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hourCycle: "h23",
-    });
-
-    timeLabel.textContent = `${formatter.format(now)} BRT`;
-  };
-
-  updateTime();
-  setInterval(updateTime, 1000);
+  import "../scripts/email-copy";
+  import "../scripts/clock";
 </script>
