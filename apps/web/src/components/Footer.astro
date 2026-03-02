@@ -1,6 +1,7 @@
 ---
 import { SITE } from "../data/site";
 import ScrambleIn from "./ui/ScrambleIn";
+import ScrambleText from "./ui/ScrambleText";
 ---
 
 <footer class="bg-black text-white selection:bg-white selection:text-black">
@@ -19,20 +20,20 @@ import ScrambleIn from "./ui/ScrambleIn";
     <div class="flex justify-between items-end">
       <div class="flex gap-8">
         <a
-          class="uppercase cursor-pointer"
+          class="uppercase cursor-pointer hover:bg-white hover:text-black py-px px-0.5"
           href={SITE.socials.linkedin}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <ScrambleIn client:visible text="LinkedIn [↗]" />
+          <ScrambleText client:visible text="LinkedIn [↗]" />
         </a>
         <a
-          class="uppercase cursor-pointer"
+          class="uppercase cursor-pointer hover:bg-white hover:text-black py-px px-0.5"
           href={SITE.socials.github}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <ScrambleIn client:visible text="Github [↗]" />
+          <ScrambleText client:visible text="Github [↗]" />
         </a>
       </div>
 
