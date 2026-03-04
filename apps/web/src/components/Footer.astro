@@ -12,7 +12,22 @@ import ScrambleText from "./ui/ScrambleText";
           <ScrambleIn client:visible text="( Reach out )" />
         </p>
         <strong class="font-normal text-3xl lg:text-4xl lowercase">
-          <ScrambleIn client:visible text={SITE.email} />
+          <a
+            class="lg:hidden hover:bg-white hover:text-black"
+            href={`mailto:${SITE.email}`}
+          >
+            <ScrambleIn client:visible text={SITE.email} />
+          </a>
+          <button
+            type="button"
+            aria-label="Copy email address to clipboard"
+            class="hidden lg:inline cursor-pointer after:block after:h-0 after:overflow-hidden after:invisible after:pointer-events-none after:content-[attr(data-copied-label)] hover:bg-white hover:text-black"
+            data-email={SITE.email}
+            data-default-label={SITE.email}
+            data-copied-label="( copied to clipboard )"
+          >
+            <ScrambleIn client:visible text={SITE.email} />
+          </button>
         </strong>
       </div>
     </div>
@@ -47,3 +62,7 @@ import ScrambleText from "./ui/ScrambleText";
     </div>
   </div>
 </footer>
+
+<script>
+  import "../scripts/email-copy";
+</script>

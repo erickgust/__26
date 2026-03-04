@@ -1,10 +1,10 @@
-const emailButton = document.querySelector(
+const emailButtons = document.querySelectorAll(
   "button[data-email][data-default-label][data-copied-label]",
 );
 
-const isEmailButton = emailButton instanceof HTMLButtonElement;
+for (const emailButton of emailButtons) {
+  if (!(emailButton instanceof HTMLButtonElement)) continue;
 
-if (isEmailButton) {
   let resetTimer: ReturnType<typeof setTimeout> | null = null;
 
   emailButton.addEventListener("click", async () => {
