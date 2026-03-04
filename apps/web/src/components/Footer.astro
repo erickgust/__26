@@ -5,22 +5,24 @@ import ScrambleText from "./ui/ScrambleText";
 ---
 
 <footer class="bg-black text-white selection:bg-white selection:text-black">
-  <div class="h-120 max-w-360 mx-auto py-4 flex flex-col px-8">
+  <div class="h-120 max-w-360 mx-auto py-4 flex flex-col px-6 lg:px-8">
     <div class="grid place-items-center flex-1">
       <div class="text-center">
-        <p class="font-light mb-1 text-xl">
+        <p class="font-light lg:mb-1 text-18 lg:text-xl">
           <ScrambleIn client:visible text="( Reach out )" />
         </p>
-        <strong class="font-normal text-4xl lowercase">
+        <strong class="font-normal text-3xl lg:text-4xl lowercase">
           <ScrambleIn client:visible text={SITE.email} />
         </strong>
       </div>
     </div>
 
-    <div class="flex justify-between items-end">
-      <div class="flex gap-8">
+    <div
+      class="flex flex-col lg:flex-row justify-between items-center lg:items-end"
+    >
+      <div class="flex gap-5 lg:gap-8">
         <a
-          class="uppercase cursor-pointer hover:bg-white hover:text-black py-px px-0.5"
+          class="uppercase cursor-pointer hover:bg-white hover:text-black"
           href={SITE.socials.linkedin}
           target="_blank"
           rel="noopener noreferrer"
@@ -28,7 +30,7 @@ import ScrambleText from "./ui/ScrambleText";
           <ScrambleText client:visible text="LinkedIn [↗]" />
         </a>
         <a
-          class="uppercase cursor-pointer hover:bg-white hover:text-black py-px px-0.5"
+          class="uppercase cursor-pointer hover:bg-white hover:text-black"
           href={SITE.socials.github}
           target="_blank"
           rel="noopener noreferrer"
@@ -37,9 +39,9 @@ import ScrambleText from "./ui/ScrambleText";
         </a>
       </div>
 
-      <p class="text-end">
+      <p class="text-end mt-2 lg:mt-0">
         ©<time datetime="2026">2026</time>
-        <br />
+        <br class="hidden lg:block" />
         all rights reserved
       </p>
     </div>
