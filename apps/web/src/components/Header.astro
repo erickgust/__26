@@ -34,10 +34,16 @@ import ScrambleText from "./ui/ScrambleText";
       </a>
     </nav>
 
+    <a
+      class="lg:hidden uppercase cursor-pointer px-0.5 hover:bg-white hover:text-blue"
+      href={`mailto:${SITE.email}`}
+    >
+      <ScrambleIn client:visible text="[email]" />
+    </a>
     <button
       type="button"
       aria-label="Copy email address to clipboard"
-      class="cursor-pointer text-start uppercase after:block after:h-0 after:overflow-hidden after:invisible after:pointer-events-none after:content-[attr(data-copied-label)] hover:bg-white hover:text-blue"
+      class="hidden lg:inline cursor-pointer text-start uppercase after:block after:h-0 after:overflow-hidden after:invisible after:pointer-events-none after:content-[attr(data-copied-label)] hover:bg-white hover:text-blue"
       data-email={SITE.email}
       data-default-label="[email]"
       data-copied-label="[copied]"
