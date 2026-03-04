@@ -55,8 +55,8 @@ p {
   --color-white: oklch(0.903 0.012 286.153);
   --color-black: oklch(0.216 0.006 301.047);
 
-  --text-6.5xl: 4rem;
-  --text-base: 0.9375rem;
-  --text-lg: 1.0625rem;
-  --text-xl: 1.125rem;
+  --text-64: 4rem;
+  --text-15: 0.9375rem;
+  --text-17: 1.0625rem;
+  --text-18: 1.125rem;
 }
