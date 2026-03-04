@@ -10,8 +10,10 @@ const { title, role } = Astro.props;
 <div class="flex items-center gap-3">
   <slot />
 
-  <div class="flex flex-col gap-0.5">
-    <h3 class="font-semibold text-17/5.5">{title}</h3>
-    <span class="text-15/none pb-1">{role}</span>
+  <div class="flex flex-col lg:gap-0.5">
+    <h3 class="font-semibold text-15/5 lg:text-17/5.5">{title}</h3>
+    <span class="text-13/none lg:text-15/none pb-1 lg:pb-1.5 text-pretty"
+      >{role}</span
+    >
   </div>
 </div>
