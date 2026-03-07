@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",
     "deploy": "wrangler deploy",
@@ -16,6 +16,7 @@
     "@astrojs/node": "^9.5.2",
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.0",
+    "@fontsource/ia-writer-mono": "^5.2.5",
     "astro": "^5.16.11",
     "clsx": "^2.1.1",
     "dotenv": "catalog:",
