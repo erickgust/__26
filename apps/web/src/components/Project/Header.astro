@@ -24,6 +24,11 @@ const { tech, href, label } = Astro.props;
     target="_blank"
     rel="noopener noreferrer"
     class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
-    ><ScrambleText client:visible text={`${label} [↗]`} /></a
   >
+    <ScrambleText
+      client:visible
+      text={`${label} [↗]`}
+      className="relative before:absolute before:-inset-y-2 before:-inset-x-1 before:content-[''] before:z-10"
+    />
+  </a>
 </div>
