@@ -22,7 +22,7 @@
   interpolate-size: allow-keywords;
 
   font-synthesis: none;
-  text-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
 }
 
 html {
