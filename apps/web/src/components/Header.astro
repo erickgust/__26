@@ -5,7 +5,7 @@ import ScrambleText from "./ui/ScrambleText";
 ---
 
 <header
-  class="flex flex-col lg:flex-row items-start justify-between mx-auto h-full lg:h-auto w-full max-w-360 px-6 lg:px-8 py-4 bg-blue text-white text-18/8 lg:text-sm selection:bg-white selection:text-blue"
+  class="flex flex-col lg:flex-row items-start justify-between mx-auto h-full lg:h-auto w-full max-w-360 px-6 lg:px-8 py-4 bg-blue text-white text-base/7 lg:text-sm selection:bg-white selection:text-blue"
 >
   <div class="flex flex-col lg:flex-row items-start gap-8">
     <a
@@ -52,7 +52,7 @@ import ScrambleText from "./ui/ScrambleText";
     </button>
   </div>
 
-  <p class="w-full max-w-93 text-wrap! leading-7 lg:leading-normal">
+  <p class="w-full max-w-93 text-wrap! lg:leading-normal">
     <ScrambleIn client:visible scrambleSpeed={25} text={SITE.description} />
   </p>
 
