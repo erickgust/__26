@@ -1,8 +1,6 @@
 ---
 import "../styles/global.css";
 
-import "@fontsource/ia-writer-mono";
-
 import { Font } from "astro:assets";
 import { SITE } from "../data/site";
 
@@ -65,7 +63,9 @@ const { title } = Astro.props;
     />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
+
     <Font cssVariable="--font-geist-mono" preload />
+    <Font cssVariable="--font-writer-mono" preload />
 
     <script
       type="application/ld+json"

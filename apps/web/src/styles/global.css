@@ -48,7 +48,7 @@ p {
 }
 
 @theme {
-  --font-mono: var(--font-geist-mono), "iA Writer Mono", monospace;
+  --font-mono: var(--font-geist-mono), var(--font-writer-mono), monospace;
   --font-sans: "Geist Pixel", system-ui, sans-serif;
 
   --color-blue: oklch(0.447 0.27 268.311);

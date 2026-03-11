@@ -17,6 +17,11 @@ export default defineConfig({
         cssVariable: "--font-geist-mono",
         weights: ["100 900"],
       },
+      {
+        provider: fontProviders.fontsource(),
+        name: "iA Writer Mono",
+        cssVariable: "--font-writer-mono",
+      },
     ],
   },
 
