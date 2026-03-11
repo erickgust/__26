@@ -8,36 +8,33 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Geist Mono",
-        cssVariable: "--font-geist-mono",
-        weights: ["100 900"],
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Geist Mono",
+      cssVariable: "--font-geist-mono",
+      weights: ["100 900"],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "iA Writer Mono",
+      cssVariable: "--font-writer-mono",
+    },
+    {
+      provider: fontProviders.local(),
+      name: "Geist Pixel",
+      cssVariable: "--font-geist-pixel",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/GeistPixel-Square.woff2"],
+            weight: "normal",
+            style: "normal",
+          },
+        ],
       },
-      {
-        provider: fontProviders.fontsource(),
-        name: "iA Writer Mono",
-        cssVariable: "--font-writer-mono",
-      },
-      {
-        provider: fontProviders.local(),
-        name: "Geist Pixel",
-        cssVariable: "--font-geist-pixel",
-        options: {
-          variants: [
-            {
-              src: ["./src/assets/fonts/GeistPixel-Square.woff2"],
-              weight: "normal",
-              style: "normal",
-            },
-          ],
-        },
-      },
-    ],
-  },
+    },
+  ],
 
   adapter: cloudflare(),
 
