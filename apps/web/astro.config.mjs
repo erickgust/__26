@@ -22,6 +22,20 @@ export default defineConfig({
         name: "iA Writer Mono",
         cssVariable: "--font-writer-mono",
       },
+      {
+        provider: fontProviders.local(),
+        name: "Geist Pixel",
+        cssVariable: "--font-geist-pixel",
+        options: {
+          variants: [
+            {
+              src: ["./src/assets/fonts/GeistPixel-Square.woff2"],
+              weight: "normal",
+              style: "normal",
+            },
+          ],
+        },
+      },
     ],
   },
 
