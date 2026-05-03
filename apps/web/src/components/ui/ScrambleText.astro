@@ -1,0 +1,54 @@
+---
+interface Props {
+  text: string;
+  direction?: "left" | "right";
+  scrambleSpeed?: number;
+  characters?: string;
+  className?: string;
+  scrambledClassName?: string;
+  trigger?: "scroll" | "immediate";
+  maxIterations?: number;
+  useOriginalCharsOnly?: boolean;
+}
+
+const {
+  text,
+  direction = "left",
+  scrambleSpeed = 50,
+  characters,
+  className = "",
+  scrambledClassName = "",
+  trigger = "scroll",
+  maxIterations = 10,
+  useOriginalCharsOnly = false,
+} = Astro.props;
+
+const hoverDirection = direction === "right" ? "end" : "start";
+const visibleClassName = ["inline-block whitespace-pre-wrap", className]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<span class="sr-only">{text}</span>
+<span
+  aria-hidden="true"
+  class={visibleClassName}
+  data-scramble
+  data-scramble-mode="intro-hover"
+  data-scramble-text={text}
+  data-scramble-trigger={trigger}
+  data-scramble-direction={direction}
+  data-scramble-hover-direction={hoverDirection}
+  data-scramble-speed={String(scrambleSpeed)}
+  data-scramble-characters={characters}
+  data-scramble-max-iterations={String(maxIterations)}
+  data-scramble-sequential="true"
+  data-scramble-use-original-chars-only={useOriginalCharsOnly ? "true" : "false"}
+  data-scramble-scrambled-class={scrambledClassName}
+>
+  {text}
+</span>
+
+<script>
+  import "../../scripts/scramble-text.js";
+</script>

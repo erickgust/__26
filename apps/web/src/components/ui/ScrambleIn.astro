@@ -1,0 +1,48 @@
+---
+interface Props {
+  text: string;
+  direction?: "left" | "right";
+  scrambleSpeed?: number;
+  scrambledLetterCount?: number;
+  characters?: string;
+  className?: string;
+  scrambledClassName?: string;
+  trigger?: "scroll" | "immediate";
+}
+
+const {
+  text,
+  direction = "left",
+  scrambleSpeed = 50,
+  scrambledLetterCount = 2,
+  characters,
+  className = "",
+  scrambledClassName = "",
+  trigger = "scroll",
+} = Astro.props;
+
+const visibleClassName = ["inline-block whitespace-pre-wrap", className]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<span class="sr-only">{text}</span>
+<span
+  aria-hidden="true"
+  class={visibleClassName}
+  data-scramble
+  data-scramble-mode="intro"
+  data-scramble-text={text}
+  data-scramble-trigger={trigger}
+  data-scramble-direction={direction}
+  data-scramble-speed={String(scrambleSpeed)}
+  data-scramble-letter-count={String(scrambledLetterCount)}
+  data-scramble-characters={characters}
+  data-scramble-scrambled-class={scrambledClassName}
+>
+  {text}
+</span>
+
+<script>
+  import "../../scripts/scramble-text.js";
+</script>

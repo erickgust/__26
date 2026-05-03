@@ -14,14 +14,11 @@
     "@__26/env": "workspace:*",
     "@astrojs/cloudflare": "13.0.2",
     "@astrojs/node": "10.0.0",
-    "@astrojs/react": "^5.0.0",
     "@astrojs/sitemap": "3.7.1",
     "animejs": "^4.4.1",
     "astro": "6.0.2",
     "clsx": "^2.1.1",
     "dotenv": "catalog:",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
     "sharp": "^0.34.5",
     "tailwind-merge": "^3.5.0",
     "zod": "catalog:"
@@ -29,8 +26,6 @@
   "devDependencies": {
     "@__26/config": "workspace:*",
     "@tailwindcss/vite": "^4.1.18",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
     "tailwindcss": "^4.1.18",
     "typescript": "catalog:",
     "wrangler": "^4.68.0"
