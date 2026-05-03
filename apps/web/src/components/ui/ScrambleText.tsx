@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
 import ScrambleIn from "./ScrambleIn";
 import ScrambleHover from "./ScrambleHover";
 
@@ -20,6 +21,14 @@ export default function ScrambleText({
   scrambledClassName,
 }: ScrambleTextProps) {
   const [isRevealed, setIsRevealed] = useState(false);
+
+  useEffect(() => {
+    setIsRevealed(false);
+  }, [characters, direction, scrambleSpeed, text]);
+
+  const handleComplete = useCallback(() => {
+    setIsRevealed(true);
+  }, []);
 
   if (isRevealed) {
     return (
@@ -44,7 +53,7 @@ export default function ScrambleText({
       characters={characters}
       className={className}
       scrambledClassName={scrambledClassName}
-      onComplete={() => setIsRevealed(true)}
+      onComplete={handleComplete}
     />
   );
 }

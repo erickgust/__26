@@ -1,20 +1,27 @@
+import { animate, onScroll, scrambleText, type JSAnimation } from "animejs";
 import {
   forwardRef,
   useCallback,
   useEffect,
   useImperativeHandle,
+  useRef,
   useState,
+  type ComponentPropsWithoutRef,
 } from "react";
 
-interface ScrambleInProps {
+import { cn } from "../../lib/utils";
+import { getIntroScrambleParams, type ScrambleDirection } from "./anime-scramble";
+
+const DEFAULT_CHARACTERS = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()_+";
+
+interface ScrambleInProps extends Omit<ComponentPropsWithoutRef<"span">, "children"> {
   text: string;
   scrambleSpeed?: number;
   scrambledLetterCount?: number;
   characters?: string;
-  className?: string;
   scrambledClassName?: string;
   autoStart?: boolean;
-  direction?: "left" | "right";
+  direction?: ScrambleDirection;
   onStart?: () => void;
   onComplete?: () => void;
 }
@@ -24,139 +31,148 @@ export interface ScrambleInHandle {
   reset: () => void;
 }
 
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 const ScrambleIn = forwardRef<ScrambleInHandle, ScrambleInProps>(
   (
     {
       text,
       scrambleSpeed = 50,
       scrambledLetterCount = 2,
-      characters = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()_+",
+      characters = DEFAULT_CHARACTERS,
       className = "",
       scrambledClassName = "",
       autoStart = true,
       direction = "left",
       onStart,
       onComplete,
+      ...props
     },
     ref,
   ) => {
-    const [displayText, setDisplayText] = useState("");
+    const textRef = useRef<HTMLSpanElement>(null);
+    const animationRef = useRef<JSAnimation | null>(null);
+    const onStartRef = useRef(onStart);
+    const onCompleteRef = useRef(onComplete);
     const [isAnimating, setIsAnimating] = useState(false);
-    const [visibleLetterCount, setVisibleLetterCount] = useState(0);
-    const [scrambleOffset, setScrambleOffset] = useState(0);
 
-    const startAnimation = useCallback(() => {
-      setIsAnimating(true);
-      setVisibleLetterCount(0);
-      setScrambleOffset(0);
-      onStart?.();
+    useEffect(() => {
+      onStartRef.current = onStart;
     }, [onStart]);
 
-    const reset = useCallback(() => {
-      setIsAnimating(false);
-      setVisibleLetterCount(0);
-      setScrambleOffset(0);
-      setDisplayText("");
+    useEffect(() => {
+      onCompleteRef.current = onComplete;
+    }, [onComplete]);
+
+    const setVisibleText = useCallback((value: string) => {
+      if (textRef.current) {
+        textRef.current.textContent = value;
+      }
     }, []);
 
-    useImperativeHandle(ref, () => ({
-      start: startAnimation,
-      reset,
-    }));
-
-    useEffect(() => {
-      if (autoStart) {
-        startAnimation();
+    const stopAnimation = useCallback((revert = true) => {
+      if (!animationRef.current) {
+        return;
       }
-    }, [autoStart, startAnimation]);
 
-    useEffect(() => {
-      let interval: ReturnType<typeof setInterval>;
+      if (revert) {
+        animationRef.current.revert();
+      } else {
+        animationRef.current.cancel();
+      }
 
-      if (isAnimating) {
-        interval = setInterval(() => {
-          if (visibleLetterCount < text.length) {
-            setVisibleLetterCount((prev) => prev + 1);
-          } else if (scrambleOffset < scrambledLetterCount) {
-            setScrambleOffset((prev) => prev + 1);
-          } else {
-            clearInterval(interval);
+      animationRef.current = null;
+    }, []);
+
+    const reset = useCallback(() => {
+      stopAnimation(true);
+      setIsAnimating(false);
+      setVisibleText("");
+    }, [setVisibleText, stopAnimation]);
+
+    const startAnimation = useCallback(
+      (useScrollTrigger: boolean) => {
+        const element = textRef.current;
+
+        if (!element) {
+          return;
+        }
+
+        stopAnimation(true);
+        setVisibleText("");
+
+        if (prefersReducedMotion()) {
+          onStartRef.current?.();
+          setVisibleText(text);
+          setIsAnimating(false);
+          onCompleteRef.current?.();
+          return;
+        }
+
+        animationRef.current = animate(element, {
+          autoplay: useScrollTrigger
+            ? onScroll({
+                target: element,
+                repeat: false,
+              })
+            : true,
+          innerHTML: scrambleText(
+            getIntroScrambleParams({
+              text,
+              direction,
+              scrambleSpeed,
+              scrambledLetterCount,
+              characters,
+              fallbackChars: DEFAULT_CHARACTERS,
+            }),
+          ),
+          onBegin: () => {
+            setIsAnimating(true);
+            onStartRef.current?.();
+          },
+          onComplete: () => {
+            setVisibleText(text);
             setIsAnimating(false);
-            onComplete?.();
-          }
+            onCompleteRef.current?.();
+          },
+        });
+      },
+      [characters, direction, scrambleSpeed, scrambledLetterCount, setVisibleText, stopAnimation, text],
+    );
 
-          const remainingSpace = Math.max(0, text.length - visibleLetterCount);
-          const currentScrambleCount = Math.min(
-            remainingSpace,
-            scrambledLetterCount,
-          );
+    useImperativeHandle(
+      ref,
+      () => ({
+        start: () => startAnimation(false),
+        reset,
+      }),
+      [reset, startAnimation],
+    );
 
-          const scrambledPart = Array(currentScrambleCount)
-            .fill(0)
-            .map(
-              () => characters[Math.floor(Math.random() * characters.length)],
-            )
-            .join("");
-
-          if (direction === "right") {
-            setDisplayText(
-              scrambledPart + text.slice(text.length - visibleLetterCount),
-            );
-          } else {
-            setDisplayText(text.slice(0, visibleLetterCount) + scrambledPart);
-          }
-        }, scrambleSpeed);
+    useEffect(() => {
+      if (!autoStart) {
+        reset();
+        return;
       }
+
+      startAnimation(true);
 
       return () => {
-        if (interval) clearInterval(interval);
+        stopAnimation(true);
       };
-    }, [
-      isAnimating,
-      text,
-      visibleLetterCount,
-      scrambleOffset,
-      scrambledLetterCount,
-      characters,
-      scrambleSpeed,
-      direction,
-      onComplete,
-    ]);
-
-    const renderText = () => {
-      if (direction === "right") {
-        const scrambled = displayText.slice(
-          0,
-          displayText.length - visibleLetterCount,
-        );
-        const revealed = displayText.slice(
-          displayText.length - visibleLetterCount,
-        );
-        return (
-          <>
-            <span className={scrambledClassName}>{scrambled}</span>
-            <span className={className}>{revealed}</span>
-          </>
-        );
-      }
-
-      const revealed = displayText.slice(0, visibleLetterCount);
-      const scrambled = displayText.slice(visibleLetterCount);
-
-      return (
-        <>
-          <span className={className}>{revealed}</span>
-          <span className={scrambledClassName}>{scrambled}</span>
-        </>
-      );
-    };
+    }, [autoStart, reset, startAnimation, stopAnimation]);
 
     return (
       <>
         <span className="sr-only">{text}</span>
-        <span className="inline-block whitespace-pre-wrap" aria-hidden="true">
-          {renderText()}
-        </span>
+        <span
+          ref={textRef}
+          className={cn("inline-block whitespace-pre-wrap", className, isAnimating && scrambledClassName)}
+          aria-hidden="true"
+          {...props}
+        />
       </>
     );
   },
