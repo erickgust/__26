@@ -1,29 +1,44 @@
 ---
 interface Props {
   text: string;
-  direction?: "left" | "right";
-  scrambleSpeed?: number;
-  scrambledLetterCount?: number;
-  characters?: string;
   className?: string;
-  scrambledClassName?: string;
   trigger?: "scroll" | "immediate";
+  from?: "left" | "right" | "center" | "random" | "auto";
+  direction?: "left" | "right";
+  chars?: string;
+  duration?: number;
+  revealRate?: number;
+  settleRate?: number;
+  settleDuration?: number;
+  revealDelay?: number;
+  delay?: number;
+  reversed?: boolean;
+  cursor?: boolean | number | string;
+  perturbation?: number;
+  seed?: number;
 }
 
 const {
   text,
-  direction = "left",
-  scrambleSpeed = 50,
-  scrambledLetterCount = 2,
-  characters,
   className = "",
-  scrambledClassName = "",
   trigger = "scroll",
+  from,
+  direction,
+  chars,
+  duration,
+  revealRate,
+  settleRate,
+  settleDuration,
+  revealDelay,
+  delay,
+  reversed,
+  cursor,
+  perturbation,
+  seed,
 } = Astro.props;
 
-const visibleClassName = ["inline-block whitespace-pre-wrap", className]
-  .filter(Boolean)
-  .join(" ");
+const visibleClassName = ["inline-block whitespace-pre-wrap", className].filter(Boolean).join(" ");
+const introFrom = from ?? direction ?? "left";
 ---
 
 <span class="sr-only">{text}</span>
@@ -34,11 +49,19 @@ const visibleClassName = ["inline-block whitespace-pre-wrap", className]
   data-scramble-mode="intro"
   data-scramble-text={text}
   data-scramble-trigger={trigger}
-  data-scramble-direction={direction}
-  data-scramble-speed={String(scrambleSpeed)}
-  data-scramble-letter-count={String(scrambledLetterCount)}
-  data-scramble-characters={characters}
-  data-scramble-scrambled-class={scrambledClassName}
+  data-scramble-intro-from={introFrom}
+  data-scramble-intro-chars={chars}
+  data-scramble-intro-duration={duration}
+  data-scramble-intro-reveal-rate={revealRate}
+  data-scramble-intro-settle-rate={settleRate}
+  data-scramble-intro-settle-duration={settleDuration}
+  data-scramble-intro-reveal-delay={revealDelay}
+  data-scramble-intro-delay={delay}
+  data-scramble-intro-override=""
+  data-scramble-intro-reversed={reversed ? "true" : undefined}
+  data-scramble-intro-cursor={cursor}
+  data-scramble-intro-perturbation={perturbation}
+  data-scramble-intro-seed={seed}
 >
   {text}
 </span>

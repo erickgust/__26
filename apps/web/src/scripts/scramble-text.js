@@ -1,10 +1,5 @@
 import { animate, onScroll, scrambleText } from "animejs";
 
-const DEFAULT_INTRO_CHARACTERS = "abcdefghijklmnopqrstuvwxyz!@#$%^&*()_+";
-const DEFAULT_HOVER_CHARACTERS =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+";
-const MIN_SCRAMBLE_SPEED = 16;
-const MIN_SETTLE_DURATION = 250;
 const initializedElements = new WeakSet();
 const activeAnimations = new WeakMap();
 const hoverListeners = new WeakMap();
@@ -13,32 +8,45 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function parseNumber(value, fallback) {
+function parseNumber(value) {
   const parsedValue = Number(value);
-  return Number.isFinite(parsedValue) ? parsedValue : fallback;
+  return Number.isFinite(parsedValue) ? parsedValue : undefined;
 }
 
-function parseBoolean(value, fallback = false) {
+function parseBoolean(value) {
   if (value == null) {
-    return fallback;
+    return undefined;
   }
 
-  return value === "" || value === "true" || value === "1";
+  if (value === "true" || value === "1" || value === "") {
+    return true;
+  }
+
+  if (value === "false" || value === "0") {
+    return false;
+  }
+
+  return undefined;
+}
+
+function parseCursor(value) {
+  const booleanValue = parseBoolean(value);
+
+  if (booleanValue !== undefined) {
+    return booleanValue;
+  }
+
+  const numericValue = parseNumber(value);
+
+  return numericValue ?? value;
+}
+
+function compactObject(object) {
+  return Object.fromEntries(Object.entries(object).filter(([, value]) => value !== undefined));
 }
 
 function getText(element) {
   return element.dataset.scrambleText ?? element.textContent ?? "";
-}
-
-function getClassTokens(value) {
-  return (value ?? "").split(/\s+/).filter(Boolean);
-}
-
-function toggleScrambledClass(element, active) {
-  const method = active ? "add" : "remove";
-  for (const token of getClassTokens(element.dataset.scrambleScrambledClass)) {
-    element.classList[method](token);
-  }
 }
 
 function setVisibleText(element, text) {
@@ -59,100 +67,43 @@ function cancelAnimation(element, revert = true) {
   }
 
   activeAnimations.delete(element);
-  toggleScrambledClass(element, false);
 }
 
-function resolveScrambleChars({
-  text,
-  fallback,
-  characters,
-  useOriginalCharsOnly = false,
-}) {
-  if (!useOriginalCharsOnly) {
-    return characters || fallback;
-  }
-
-  const uniqueChars = Array.from(new Set(text.replace(/\s+/g, "").split(""))).join(
-    "",
-  );
-
-  return uniqueChars || characters || fallback;
-}
-
-function getRevealRate(scrambleSpeed) {
-  return Math.max(1, Math.round(1000 / Math.max(scrambleSpeed, MIN_SCRAMBLE_SPEED)));
-}
-
-function getIntroParams(element) {
+function readScrambleParams(element, prefix, defaults = {}) {
   const text = getText(element);
-  const scrambleSpeed = parseNumber(element.dataset.scrambleSpeed, 50);
-  const scrambledLetterCount = parseNumber(
-    element.dataset.scrambleLetterCount,
-    2,
-  );
-  const revealRate = getRevealRate(scrambleSpeed);
+  const charsKey = `${prefix}Chars`;
+  const fromKey = `${prefix}From`;
+  const durationKey = `${prefix}Duration`;
+  const revealRateKey = `${prefix}RevealRate`;
+  const settleRateKey = `${prefix}SettleRate`;
+  const settleDurationKey = `${prefix}SettleDuration`;
+  const revealDelayKey = `${prefix}RevealDelay`;
+  const delayKey = `${prefix}Delay`;
+  const overrideKey = `${prefix}Override`;
+  const reversedKey = `${prefix}Reversed`;
+  const cursorKey = `${prefix}Cursor`;
+  const perturbationKey = `${prefix}Perturbation`;
+  const seedKey = `${prefix}Seed`;
 
-  return {
+  const chars = element.dataset[charsKey] ?? element.dataset.scrambleChars;
+  const overrideValue = element.dataset[overrideKey];
+
+  return compactObject({
     text,
-    chars: resolveScrambleChars({
-      text,
-      characters: element.dataset.scrambleCharacters,
-      fallback: DEFAULT_INTRO_CHARACTERS,
-    }),
-    ease: "linear",
-    from: element.dataset.scrambleDirection === "right" ? "right" : "left",
-    override: "",
-    revealRate,
-    settleRate: revealRate,
-    settleDuration: Math.max(
-      MIN_SETTLE_DURATION,
-      scrambleSpeed * Math.max(scrambledLetterCount, 1) * 6,
-    ),
-  };
-}
-
-function getHoverFromDirection(direction) {
-  switch (direction) {
-    case "end":
-      return "right";
-    case "center":
-      return "center";
-    default:
-      return "left";
-  }
-}
-
-function getHoverParams(element) {
-  const text = getText(element);
-  const scrambleSpeed = parseNumber(element.dataset.scrambleSpeed, 50);
-  const maxIterations = parseNumber(element.dataset.scrambleMaxIterations, 10);
-  const sequential = parseBoolean(element.dataset.scrambleSequential);
-  const revealDirection = element.dataset.scrambleHoverDirection || "start";
-  const useOriginalCharsOnly = parseBoolean(
-    element.dataset.scrambleUseOriginalCharsOnly,
-  );
-  const revealRate = getRevealRate(scrambleSpeed);
-
-  return {
-    text,
-    chars: resolveScrambleChars({
-      text,
-      characters: element.dataset.scrambleCharacters,
-      fallback: DEFAULT_HOVER_CHARACTERS,
-      useOriginalCharsOnly,
-    }),
-    ease: "linear",
-    from: sequential ? getHoverFromDirection(revealDirection) : "random",
-    revealRate: sequential ? revealRate : revealRate * 2,
-    settleRate: revealRate,
-    settleDuration: Math.max(
-      MIN_SETTLE_DURATION,
-      scrambleSpeed * Math.max(sequential ? 6 : maxIterations, 1),
-    ),
-    duration: sequential
-      ? undefined
-      : Math.max(scrambleSpeed * Math.max(maxIterations, 1), scrambleSpeed * 4),
-  };
+    chars,
+    from: element.dataset[fromKey] ?? defaults.from,
+    duration: parseNumber(element.dataset[durationKey]),
+    revealRate: parseNumber(element.dataset[revealRateKey]),
+    settleRate: parseNumber(element.dataset[settleRateKey]),
+    settleDuration: parseNumber(element.dataset[settleDurationKey]),
+    revealDelay: parseNumber(element.dataset[revealDelayKey]),
+    delay: parseNumber(element.dataset[delayKey]),
+    override: overrideValue ?? defaults.override,
+    reversed: parseBoolean(element.dataset[reversedKey]),
+    cursor: element.dataset[cursorKey] != null ? parseCursor(element.dataset[cursorKey]) : undefined,
+    perturbation: parseNumber(element.dataset[perturbationKey]),
+    seed: parseNumber(element.dataset[seedKey]),
+  });
 }
 
 function getAutoplay(element) {
@@ -167,10 +118,7 @@ function getAutoplay(element) {
 }
 
 function getInteractionTarget(element) {
-  return (
-    element.closest("a, button, input, select, textarea, [tabindex]") ||
-    element
-  );
+  return element.closest("a, button, input, select, textarea, [tabindex]") || element;
 }
 
 function resetHover(element) {
@@ -182,16 +130,15 @@ function startHoverAnimation(element) {
   const text = getText(element);
 
   cancelAnimation(element, true);
-  setVisibleText(element, text);
 
   const animation = animate(element, {
-    innerHTML: scrambleText(getHoverParams(element)),
-    onBegin: () => {
-      toggleScrambledClass(element, true);
-    },
+    innerHTML: scrambleText(
+      readScrambleParams(element, "scrambleHover", {
+        from: "left",
+      }),
+    ),
     onComplete: () => {
       activeAnimations.delete(element);
-      toggleScrambledClass(element, false);
       setVisibleText(element, text);
     },
   });
@@ -224,7 +171,6 @@ function startIntroAnimation(element) {
   const text = getText(element);
 
   cancelAnimation(element, true);
-  setVisibleText(element, "");
 
   if (prefersReducedMotion()) {
     setVisibleText(element, text);
@@ -233,13 +179,14 @@ function startIntroAnimation(element) {
 
   const animation = animate(element, {
     autoplay: getAutoplay(element),
-    innerHTML: scrambleText(getIntroParams(element)),
-    onBegin: () => {
-      toggleScrambledClass(element, true);
-    },
+    innerHTML: scrambleText(
+      readScrambleParams(element, "scrambleIntro", {
+        from: "left",
+        override: "",
+      }),
+    ),
     onComplete: () => {
       activeAnimations.delete(element);
-      toggleScrambledClass(element, false);
       setVisibleText(element, text);
 
       if (element.dataset.scrambleMode === "intro-hover") {

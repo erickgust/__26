@@ -43,7 +43,7 @@ import ScrambleText from "./ui/ScrambleText.astro";
   </div>
 
   <p class="w-full max-w-93 text-wrap! lg:leading-normal">
-    <ScrambleIn scrambleSpeed={25} text={SITE.description} />
+    <ScrambleIn text={SITE.description} revealRate={40} settleRate={40} />
   </p>
 
   <div class="flex flex-col-reverse lg:flex-col gap-0.5 ml-auto lg:ml-0 lg:w-full lg:max-w-27.5 text-end">

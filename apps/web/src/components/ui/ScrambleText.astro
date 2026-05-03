@@ -1,32 +1,71 @@
 ---
 interface Props {
   text: string;
-  direction?: "left" | "right";
-  scrambleSpeed?: number;
-  characters?: string;
   className?: string;
-  scrambledClassName?: string;
   trigger?: "scroll" | "immediate";
-  maxIterations?: number;
-  useOriginalCharsOnly?: boolean;
+  direction?: "left" | "right";
+  introFrom?: "left" | "right" | "center" | "random" | "auto";
+  hoverFrom?: "left" | "right" | "center" | "random" | "auto";
+  chars?: string;
+  introChars?: string;
+  hoverChars?: string;
+  introDuration?: number;
+  introRevealRate?: number;
+  introSettleRate?: number;
+  introSettleDuration?: number;
+  introRevealDelay?: number;
+  introDelay?: number;
+  introReversed?: boolean;
+  introCursor?: boolean | number | string;
+  introPerturbation?: number;
+  introSeed?: number;
+  hoverDuration?: number;
+  hoverRevealRate?: number;
+  hoverSettleRate?: number;
+  hoverSettleDuration?: number;
+  hoverRevealDelay?: number;
+  hoverDelay?: number;
+  hoverReversed?: boolean;
+  hoverCursor?: boolean | number | string;
+  hoverPerturbation?: number;
+  hoverSeed?: number;
 }
 
 const {
   text,
-  direction = "left",
-  scrambleSpeed = 50,
-  characters,
   className = "",
-  scrambledClassName = "",
   trigger = "scroll",
-  maxIterations = 10,
-  useOriginalCharsOnly = false,
+  direction = "left",
+  introFrom,
+  hoverFrom,
+  chars,
+  introChars,
+  hoverChars,
+  introDuration,
+  introRevealRate,
+  introSettleRate,
+  introSettleDuration,
+  introRevealDelay,
+  introDelay,
+  introReversed,
+  introCursor,
+  introPerturbation,
+  introSeed,
+  hoverDuration,
+  hoverRevealRate,
+  hoverSettleRate,
+  hoverSettleDuration,
+  hoverRevealDelay,
+  hoverDelay,
+  hoverReversed,
+  hoverCursor,
+  hoverPerturbation,
+  hoverSeed,
 } = Astro.props;
 
-const hoverDirection = direction === "right" ? "end" : "start";
-const visibleClassName = ["inline-block whitespace-pre-wrap", className]
-  .filter(Boolean)
-  .join(" ");
+const visibleClassName = ["inline-block whitespace-pre-wrap", className].filter(Boolean).join(" ");
+const resolvedIntroFrom = introFrom ?? direction;
+const resolvedHoverFrom = hoverFrom ?? direction;
 ---
 
 <span class="sr-only">{text}</span>
@@ -37,14 +76,32 @@ const visibleClassName = ["inline-block whitespace-pre-wrap", className]
   data-scramble-mode="intro-hover"
   data-scramble-text={text}
   data-scramble-trigger={trigger}
-  data-scramble-direction={direction}
-  data-scramble-hover-direction={hoverDirection}
-  data-scramble-speed={String(scrambleSpeed)}
-  data-scramble-characters={characters}
-  data-scramble-max-iterations={String(maxIterations)}
-  data-scramble-sequential="true"
-  data-scramble-use-original-chars-only={useOriginalCharsOnly ? "true" : "false"}
-  data-scramble-scrambled-class={scrambledClassName}
+  data-scramble-chars={chars}
+  data-scramble-intro-from={resolvedIntroFrom}
+  data-scramble-intro-chars={introChars}
+  data-scramble-intro-duration={introDuration}
+  data-scramble-intro-reveal-rate={introRevealRate}
+  data-scramble-intro-settle-rate={introSettleRate}
+  data-scramble-intro-settle-duration={introSettleDuration}
+  data-scramble-intro-reveal-delay={introRevealDelay}
+  data-scramble-intro-delay={introDelay}
+  data-scramble-intro-override=""
+  data-scramble-intro-reversed={introReversed ? "true" : undefined}
+  data-scramble-intro-cursor={introCursor}
+  data-scramble-intro-perturbation={introPerturbation}
+  data-scramble-intro-seed={introSeed}
+  data-scramble-hover-from={resolvedHoverFrom}
+  data-scramble-hover-chars={hoverChars}
+  data-scramble-hover-duration={hoverDuration}
+  data-scramble-hover-reveal-rate={hoverRevealRate}
+  data-scramble-hover-settle-rate={hoverSettleRate}
+  data-scramble-hover-settle-duration={hoverSettleDuration}
+  data-scramble-hover-reveal-delay={hoverRevealDelay}
+  data-scramble-hover-delay={hoverDelay}
+  data-scramble-hover-reversed={hoverReversed ? "true" : undefined}
+  data-scramble-hover-cursor={hoverCursor}
+  data-scramble-hover-perturbation={hoverPerturbation}
+  data-scramble-hover-seed={hoverSeed}
 >
   {text}
 </span>
