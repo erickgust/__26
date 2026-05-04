@@ -2,7 +2,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField, fontProviders } from "astro/config";
 
 import cloudflare from "@astrojs/cloudflare";
-import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
@@ -53,5 +52,5 @@ export default defineConfig({
   },
 
   site: "https://erickgust.dev",
-  integrations: [sitemap(), react()],
+  integrations: [sitemap()],
 });

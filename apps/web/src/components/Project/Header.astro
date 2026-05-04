@@ -1,6 +1,6 @@
 ---
-import ScrambleIn from "../ui/ScrambleIn";
-import ScrambleText from "../ui/ScrambleText";
+import ScrambleIn from "../ui/ScrambleIn.astro";
+import ScrambleText from "../ui/ScrambleText.astro";
 
 interface Props {
   tech: string;
@@ -14,9 +14,7 @@ const { tech, href, label } = Astro.props;
 <div
   class="text-13 relative flex justify-between after:content-[''] after:block after:h-px after:bg-blue after:absolute after:left-0 after:right-0 after:bottom-0"
 >
-  <span
-    class="text-white bg-blue selection:text-blue! selection:bg-white px-0.5 py-px"
-    ><ScrambleIn client:visible text={tech} /></span
+  <span class="text-white bg-blue selection:text-blue! selection:bg-white px-0.5 py-px"><ScrambleIn text={tech} /></span
   >
 
   <a
@@ -26,7 +24,6 @@ const { tech, href, label } = Astro.props;
     class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
   >
     <ScrambleText
-      client:visible
       text={`${label} [↗]`}
       className="relative before:absolute before:-inset-y-2 before:-inset-x-1 before:content-[''] before:z-10"
     />

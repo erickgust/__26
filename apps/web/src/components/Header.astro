@@ -1,7 +1,7 @@
 ---
 import { SITE } from "../data/site";
-import ScrambleIn from "./ui/ScrambleIn";
-import ScrambleText from "./ui/ScrambleText";
+import ScrambleIn from "./ui/ScrambleIn.astro";
+import ScrambleText from "./ui/ScrambleText.astro";
 ---
 
 <header
@@ -13,21 +13,20 @@ import ScrambleText from "./ui/ScrambleText";
       class="inline-flex flex-col gap-0.5 px-0.5 hover:bg-white hover:text-blue"
     >
       <h1 class="contents">
-        <ScrambleText client:visible text="Erick Gustavo" />
-        <ScrambleText client:visible text="Web Developer" />
+        <ScrambleText text="Erick Gustavo" />
+        <ScrambleText text="Web Developer" />
       </h1>
     </a>
 
     <nav aria-label="Main navigation" class="inline-flex flex-col gap-0.5">
       <a href="#experiences" class="px-0.5 hover:bg-white hover:text-blue">
-        <ScrambleText client:visible text="Experiences" />
+        <ScrambleText text="Experiences" />
       </a>
       <a href="#projects" class="px-0.5 hover:bg-white hover:text-blue">
-        <ScrambleText client:visible text="Projects" />
+        <ScrambleText text="Projects" />
       </a>
       <a aria-disabled="true">
         <ScrambleIn
-          client:visible
           text="Writing"
           className="cursor-not-allowed hover:line-through px-0.5"
         />
@@ -38,7 +37,7 @@ import ScrambleText from "./ui/ScrambleText";
       class="lg:hidden uppercase cursor-pointer px-0.5 hover:bg-white hover:text-blue"
       href={`mailto:${SITE.email}`}
     >
-      <ScrambleIn client:visible text="[email]" />
+      <ScrambleIn text="[email]" />
     </a>
     <button
       type="button"
@@ -47,13 +46,22 @@ import ScrambleText from "./ui/ScrambleText";
       data-email={SITE.email}
       data-default-label="[email]"
       data-copied-label="[copied]"
+      data-failed-label="[failed]"
     >
-      <ScrambleIn client:visible text="[email]" />
+      <span
+        class="inline-block whitespace-pre-wrap"
+        data-copy-label
+        data-scramble
+        data-scramble-mode="intro"
+        data-scramble-text="[email]"
+        data-scramble-trigger="scroll"
+        aria-hidden="true">[email]</span
+      >
     </button>
   </div>
 
   <p class="w-full max-w-93 text-wrap! lg:leading-normal">
-    <ScrambleIn client:visible scrambleSpeed={25} text={SITE.description} />
+    <ScrambleIn text={SITE.description} />
   </p>
 
   <div
@@ -66,7 +74,7 @@ import ScrambleText from "./ui/ScrambleText";
       rel="noopener noreferrer"
       class="py-px px-0.5 uppercase hover:bg-white hover:text-blue"
     >
-      <ScrambleText client:visible text="LinkedIn [↗]" />
+      <ScrambleText text="LinkedIn [↗]" />
     </a>
     <a
       href={SITE.socials.github}
@@ -74,7 +82,7 @@ import ScrambleText from "./ui/ScrambleText";
       rel="noopener noreferrer"
       class="py-px px-0.5 uppercase hover:bg-white hover:text-blue"
     >
-      <ScrambleText client:visible text="Github [↗]" />
+      <ScrambleText text="Github [↗]" />
     </a>
   </div>
 </header>
