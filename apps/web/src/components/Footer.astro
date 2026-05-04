@@ -27,8 +27,14 @@ import ScrambleText from "./ui/ScrambleText.astro";
             data-copied-label="( copied to clipboard )"
             data-failed-label="( failed to copy )"
           >
-            <span class="inline-block whitespace-pre-wrap" data-copy-label
-              >{SITE.email}</span
+            <span
+              class="inline-block whitespace-pre-wrap"
+              data-copy-label
+              data-scramble
+              data-scramble-mode="intro"
+              data-scramble-text={SITE.email}
+              data-scramble-trigger="scroll"
+              aria-hidden="true">{SITE.email}</span
             >
           </button>
         </strong>
