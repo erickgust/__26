@@ -12,7 +12,10 @@ import ScrambleText from "./ui/ScrambleText.astro";
           <ScrambleIn text="( Reach out )" />
         </p>
         <strong class="font-normal text-3xl lg:text-4xl lowercase">
-          <a class="lg:hidden hover:bg-white hover:text-black" href={`mailto:${SITE.email}`}>
+          <a
+            class="lg:hidden hover:bg-white hover:text-black"
+            href={`mailto:${SITE.email}`}
+          >
             <ScrambleIn text={SITE.email} />
           </a>
           <button
@@ -22,14 +25,19 @@ import ScrambleText from "./ui/ScrambleText.astro";
             data-email={SITE.email}
             data-default-label={SITE.email}
             data-copied-label="( copied to clipboard )"
+            data-failed-label="( failed to copy )"
           >
-            <ScrambleIn text={SITE.email} />
+            <span class="inline-block whitespace-pre-wrap" data-copy-label
+              >{SITE.email}</span
+            >
           </button>
         </strong>
       </div>
     </div>
 
-    <div class="flex flex-col lg:flex-row justify-between items-center lg:items-end">
+    <div
+      class="flex flex-col lg:flex-row justify-between items-center lg:items-end"
+    >
       <div class="flex gap-5 lg:gap-8">
         <a
           class="uppercase cursor-pointer hover:bg-white hover:text-black"

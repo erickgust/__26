@@ -8,7 +8,10 @@ import ScrambleText from "./ui/ScrambleText.astro";
   class="flex flex-col lg:flex-row items-start justify-between mx-auto h-full lg:h-auto w-full max-w-360 px-6 lg:px-8 py-4 bg-blue text-white text-base/7 lg:text-sm selection:bg-white selection:text-blue"
 >
   <div class="flex flex-col lg:flex-row items-start gap-8">
-    <a href="#" class="inline-flex flex-col gap-0.5 px-0.5 hover:bg-white hover:text-blue">
+    <a
+      href="#"
+      class="inline-flex flex-col gap-0.5 px-0.5 hover:bg-white hover:text-blue"
+    >
       <h1 class="contents">
         <ScrambleText text="Erick Gustavo" />
         <ScrambleText text="Web Developer" />
@@ -23,11 +26,17 @@ import ScrambleText from "./ui/ScrambleText.astro";
         <ScrambleText text="Projects" />
       </a>
       <a aria-disabled="true">
-        <ScrambleIn text="Writing" className="cursor-not-allowed hover:line-through px-0.5" />
+        <ScrambleIn
+          text="Writing"
+          className="cursor-not-allowed hover:line-through px-0.5"
+        />
       </a>
     </nav>
 
-    <a class="lg:hidden uppercase cursor-pointer px-0.5 hover:bg-white hover:text-blue" href={`mailto:${SITE.email}`}>
+    <a
+      class="lg:hidden uppercase cursor-pointer px-0.5 hover:bg-white hover:text-blue"
+      href={`mailto:${SITE.email}`}
+    >
       <ScrambleIn text="[email]" />
     </a>
     <button
@@ -37,8 +46,11 @@ import ScrambleText from "./ui/ScrambleText.astro";
       data-email={SITE.email}
       data-default-label="[email]"
       data-copied-label="[copied]"
+      data-failed-label="[failed]"
     >
-      <ScrambleIn text="[email]" />
+      <span class="inline-block whitespace-pre-wrap" data-copy-label
+        >[email]</span
+      >
     </button>
   </div>
 
@@ -46,7 +58,9 @@ import ScrambleText from "./ui/ScrambleText.astro";
     <ScrambleIn text={SITE.description} />
   </p>
 
-  <div class="flex flex-col-reverse lg:flex-col gap-0.5 ml-auto lg:ml-0 lg:w-full lg:max-w-27.5 text-end">
+  <div
+    class="flex flex-col-reverse lg:flex-col gap-0.5 ml-auto lg:ml-0 lg:w-full lg:max-w-27.5 text-end"
+  >
     <span data-local-time>--:--:-- BRT</span>
     <a
       href={SITE.socials.linkedin}

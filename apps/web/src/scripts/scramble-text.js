@@ -42,7 +42,9 @@ function getAutoplay(element) {
 }
 
 function getInteractionTarget(element) {
-  return element.closest("a, button, input, select, textarea, [tabindex]") || element;
+  return (
+    element.closest("a, button, input, select, textarea, [tabindex]") || element
+  );
 }
 
 function playScramble(element, options = {}) {
@@ -54,8 +56,7 @@ function playScramble(element, options = {}) {
     autoplay: options.autoplay ?? true,
     innerHTML: scrambleText({
       text,
-      revealRate: 30,
-      settleRate: 18,
+      revealRate: 36,
       ...options.params,
     }),
     onComplete: () => {
