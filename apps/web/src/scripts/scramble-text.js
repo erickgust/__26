@@ -54,6 +54,8 @@ function playScramble(element, options = {}) {
     autoplay: options.autoplay ?? true,
     innerHTML: scrambleText({
       text,
+      revealRate: 30,
+      settleRate: 18,
       ...options.params,
     }),
     onComplete: () => {
