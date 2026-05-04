@@ -21,7 +21,7 @@ import ScrambleText from "./ui/ScrambleText.astro";
           <button
             type="button"
             aria-label="Copy email address to clipboard"
-            class="hidden lg:inline cursor-pointer after:block after:h-0 after:overflow-hidden after:invisible after:pointer-events-none after:content-[attr(data-copied-label)] hover:bg-white hover:text-black"
+            class="hidden lg:inline relative cursor-pointer before:absolute before:-inset-y-2 before:inset-x-0 before:content-[''] after:block after:h-0 after:overflow-hidden after:invisible after:pointer-events-none after:content-[attr(data-copied-label)]"
             data-email={SITE.email}
             data-default-label={SITE.email}
             data-copied-label="( copied to clipboard )"
