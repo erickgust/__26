@@ -1,22 +1,39 @@
 import { animate, onScroll, scrambleText } from "animejs";
 
-const initializedElements = new WeakSet();
-const activeAnimations = new WeakMap();
-const hoverListeners = new WeakMap();
+type ScrambleElement = HTMLElement;
+type ScrambleAnimation = ReturnType<typeof animate>;
+type ScrambleAutoplay = true | ReturnType<typeof onScroll>;
+type ScrambleTextParams = Parameters<typeof scrambleText>[0];
 
-function prefersReducedMotion() {
+type HoverListenerState = {
+  target: HTMLElement;
+  start: () => void;
+  reset: () => void;
+};
+
+type PlayScrambleOptions = {
+  autoplay?: ScrambleAutoplay;
+  params?: Partial<ScrambleTextParams>;
+  onComplete?: () => void;
+};
+
+const initializedElements = new WeakSet<ScrambleElement>();
+const activeAnimations = new WeakMap<ScrambleElement, ScrambleAnimation>();
+const hoverListeners = new WeakMap<ScrambleElement, HoverListenerState>();
+
+function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function getText(element) {
+function getText(element: ScrambleElement): string {
   return element.dataset.scrambleText ?? element.textContent ?? "";
 }
 
-function setVisibleText(element, text) {
+function setVisibleText(element: ScrambleElement, text: string): void {
   element.textContent = text;
 }
 
-function cancelAnimation(element, revert = true) {
+function cancelAnimation(element: ScrambleElement, revert = true): void {
   const animation = activeAnimations.get(element);
 
   if (!animation) return;
@@ -30,7 +47,7 @@ function cancelAnimation(element, revert = true) {
   activeAnimations.delete(element);
 }
 
-function getAutoplay(element) {
+function getAutoplay(element: ScrambleElement): ScrambleAutoplay {
   if (element.dataset.scrambleTrigger === "immediate") {
     return true;
   }
@@ -41,13 +58,11 @@ function getAutoplay(element) {
   });
 }
 
-function getInteractionTarget(element) {
-  return (
-    element.closest("a, button, input, select, textarea, [tabindex]") || element
-  );
+function getInteractionTarget(element: ScrambleElement): HTMLElement {
+  return element.closest<HTMLElement>("a, button, input, select, textarea, [tabindex]") ?? element;
 }
 
-function playScramble(element, options = {}) {
+function playScramble(element: ScrambleElement, options: PlayScrambleOptions = {}): void {
   const text = getText(element);
 
   cancelAnimation(element, true);
@@ -69,12 +84,12 @@ function playScramble(element, options = {}) {
   activeAnimations.set(element, animation);
 }
 
-function resetHover(element) {
+function resetHover(element: ScrambleElement): void {
   cancelAnimation(element, true);
   setVisibleText(element, getText(element));
 }
 
-function enableHover(element) {
+function enableHover(element: ScrambleElement): void {
   if (hoverListeners.has(element) || prefersReducedMotion()) {
     return;
   }
@@ -91,7 +106,7 @@ function enableHover(element) {
   hoverListeners.set(element, { target, start, reset });
 }
 
-function startIntroAnimation(element) {
+function startIntroAnimation(element: ScrambleElement): void {
   if (prefersReducedMotion()) {
     setVisibleText(element, getText(element));
     return;
@@ -110,7 +125,7 @@ function startIntroAnimation(element) {
   });
 }
 
-function initScrambleElement(element) {
+function initScrambleElement(element: ScrambleElement): void {
   if (initializedElements.has(element)) {
     return;
   }
@@ -120,8 +135,8 @@ function initScrambleElement(element) {
   startIntroAnimation(element);
 }
 
-function initScrambleText() {
-  for (const element of document.querySelectorAll("[data-scramble]")) {
+function initScrambleText(): void {
+  for (const element of document.querySelectorAll<HTMLElement>("[data-scramble]")) {
     initScrambleElement(element);
   }
 }

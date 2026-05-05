@@ -7,7 +7,9 @@ interface Props {
 
 const { text, className = "", trigger = "scroll" } = Astro.props;
 
-const visibleClassName = ["inline-block whitespace-pre-wrap", className].filter(Boolean).join(" ");
+const visibleClassName = ["inline-block whitespace-pre-wrap", className]
+  .filter(Boolean)
+  .join(" ");
 ---
 
 <span class="sr-only">{text}</span>
@@ -23,5 +25,5 @@ const visibleClassName = ["inline-block whitespace-pre-wrap", className].filter(
 </span>
 
 <script>
-  import "../../scripts/scramble-text.js";
+  import "../../scripts/scramble-text";
 </script>
