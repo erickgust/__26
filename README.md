@@ -1,48 +1,62 @@
-# \_\_26
+# erickgust.dev
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines Astro, and more.
+Personal portfolio website for [`erickgust.dev`](https://erickgust.dev).
 
-## Features
+Built with Astro in a small Bun + Turborepo workspace and deployed to Cloudflare.
 
-- **TypeScript** - For type safety and improved developer experience
-- **Astro** - The web framework for content-driven websites
-- **TailwindCSS** - Utility-first CSS for rapid UI development
-- **shadcn/ui** - Reusable UI components
-- **Oxlint** - Oxlint + Oxfmt (linting & formatting)
-- **Turborepo** - Optimized monorepo build system
+## Stack
+
+- Astro
+- TypeScript
+- Tailwind CSS
+- Bun
+- Turborepo
+- Cloudflare
+
+## Project Structure
+
+```text
+__26/
+├── apps/
+│   └── web/          # Astro app
+├── packages/
+│   ├── config/       # shared config
+│   └── env/          # shared env helpers
+├── package.json
+└── turbo.json
+```
 
 ## Getting Started
 
-First, install the dependencies:
+Install dependencies:
 
 ```bash
 bun install
 ```
 
-Then, run the development server:
+Start the website locally:
 
 ```bash
-bun run dev
+bun run dev:web
 ```
 
-Open [http://localhost:4321](http://localhost:4321) in your browser to see the web application.
+## Scripts
 
-## Git Hooks and Formatting
+- `bun run dev` — run the workspace in development mode
+- `bun run dev:web` — run the web app only
+- `bun run build` — build the project
+- `bun run check-types` — run type checks
+- `bun run check` — run formatting and linting
+- `bun run deploy:web` — deploy the site
 
-- Format and lint fix: `bun run check`
+## Editing Content
 
-## Project Structure
+Most site content lives here:
 
-```
-__26/
-├── apps/
-│   ├── web/         # Frontend application (Astro)
-```
+- `apps/web/src/pages/index.astro`
+- `apps/web/src/data/site.ts`
+- `apps/web/src/components/`
 
-## Available Scripts
+## Deployment
 
-- `bun run dev`: Start all applications in development mode
-- `bun run build`: Build all applications
-- `bun run dev:web`: Start only the web application
-- `bun run check-types`: Check TypeScript types across all apps
-- `bun run check`: Run Oxlint and Oxfmt
+The site is configured to deploy to Cloudflare using Wrangler.
