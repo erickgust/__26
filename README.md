@@ -20,8 +20,7 @@ __26/
 ├── apps/
 │   └── web/          # Astro app
 ├── packages/
-│   ├── config/       # shared config
-│   └── env/          # shared env helpers
+│   └── config/       # shared config
 ├── package.json
 └── turbo.json
 ```

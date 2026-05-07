@@ -11,17 +11,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@__26/env": "workspace:*",
     "@astrojs/cloudflare": "13.0.2",
-    "@astrojs/node": "10.0.0",
     "@astrojs/sitemap": "3.7.1",
     "animejs": "^4.4.1",
     "astro": "6.0.2",
     "clsx": "^2.1.1",
-    "dotenv": "catalog:",
     "sharp": "^0.34.5",
-    "tailwind-merge": "^3.5.0",
-    "zod": "catalog:"
+    "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
     "@__26/config": "workspace:*",

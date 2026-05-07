@@ -7,8 +7,6 @@
       "packages/*"
     ],
     "catalog": {
-      "dotenv": "^17.2.2",
-      "zod": "^4.1.13",
       "typescript": "^5"
     }
   },
@@ -21,11 +19,6 @@
     "dev:web": "turbo -F web dev",
     "deploy:web": "turbo -F web deploy",
     "check": "oxlint && oxfmt --write"
-  },
-  "dependencies": {
-    "@__26/env": "workspace:*",
-    "dotenv": "catalog:",
-    "zod": "catalog:"
   },
   "devDependencies": {
     "@__26/config": "workspace:*",
