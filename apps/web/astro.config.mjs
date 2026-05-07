@@ -9,15 +9,18 @@ export default defineConfig({
   output: "server",
   fonts: [
     {
-      provider: fontProviders.google(),
-      name: "Geist Mono",
-      cssVariable: "--font-geist-mono",
-      weights: ["100 900"],
-    },
-    {
-      provider: fontProviders.fontsource(),
-      name: "iA Writer Mono",
-      cssVariable: "--font-writer-mono",
+      provider: fontProviders.local(),
+      name: "PP Fraktion Mono Variable",
+      cssVariable: "--font-pp-fraktion-mono",
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/PPFraktionMono-Variable.woff2"],
+            weight: "100 900",
+            style: "normal",
+          },
+        ],
+      },
     },
     {
       provider: fontProviders.local(),
