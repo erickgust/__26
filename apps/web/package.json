@@ -11,19 +11,19 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "13.0.2",
-    "@astrojs/sitemap": "3.7.1",
-    "animejs": "^4.4.1",
-    "astro": "6.0.2",
-    "clsx": "^2.1.1",
-    "sharp": "^0.34.5",
-    "tailwind-merge": "^3.5.0"
+    "@astrojs/cloudflare": "13.5.0",
+    "@astrojs/sitemap": "3.7.2",
+    "animejs": "4.4.1",
+    "astro": "6.3.1",
+    "clsx": "2.1.1",
+    "sharp": "0.34.5",
+    "tailwind-merge": "3.6.0"
   },
   "devDependencies": {
     "@__26/config": "workspace:*",
-    "@tailwindcss/vite": "^4.1.18",
-    "tailwindcss": "^4.1.18",
+    "@tailwindcss/vite": "4.3.0",
+    "tailwindcss": "4.3.0",
     "typescript": "catalog:",
-    "wrangler": "^4.68.0"
+    "wrangler": "4.90.1"
   }
 }
