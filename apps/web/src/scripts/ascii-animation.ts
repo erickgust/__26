@@ -30,11 +30,14 @@ async function initAsciiAnimation() {
   if (animationId !== null) return;
 
   let frameIndex = 0;
+  let direction = 1;
   let lastTimestamp = 0;
 
   function tick(timestamp: number) {
     if (timestamp - lastTimestamp >= FRAME_DURATION) {
-      frameIndex = (frameIndex + 1) % frames.length;
+      frameIndex += direction;
+      if (frameIndex >= frames.length - 1) direction = -1;
+      if (frameIndex <= 0) direction = 1;
       if (pre) pre.textContent = frames[frameIndex];
       lastTimestamp = timestamp;
     }
