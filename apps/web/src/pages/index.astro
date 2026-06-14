@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import TITLE_TEXT from "../ascii.txt?raw";
+import TITLE_TEXT from "../ascii/frame_0000.txt?raw";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import * as Project from "../components/Project";
@@ -23,9 +23,10 @@ import * as Experience from "../components/Experience";
   >
     <Header />
     <pre
+      data-ascii-animation
       aria-hidden="true"
       role="img"
-      class="hidden lg:block w-full text-center select-none overflow-hidden">{TITLE_TEXT}</pre>
+      class="hidden lg:block w-full text-center select-none overflow-hidden text-xs">{TITLE_TEXT}</pre>
   </section>
 
   <main
@@ -191,3 +192,7 @@ import * as Experience from "../components/Experience";
 
   <Footer />
 </Layout>
+
+<script>
+  import "../scripts/ascii-animation";
+</script>
