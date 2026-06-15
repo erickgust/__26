@@ -18,7 +18,9 @@ function stopAnimation() {
 async function initAsciiAnimation() {
   stopAnimation();
 
-  const pre = document.querySelector<HTMLPreElement>("pre[data-ascii-animation]");
+  const pre = document.querySelector<HTMLPreElement>(
+    "pre[data-ascii-animation]",
+  );
   if (!pre) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 

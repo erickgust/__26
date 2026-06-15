@@ -1,4 +1,4 @@
-import { animate, scrambleText, type JSAnimation } from "animejs";
+import { animate, type JSAnimation, scrambleText } from "animejs";
 
 const emailButtons = document.querySelectorAll(
   "button[data-email][data-default-label][data-copied-label]",
@@ -10,7 +10,8 @@ for (const emailButton of emailButtons) {
   const label = emailButton.querySelector("[data-copy-label]");
   if (!(label instanceof HTMLElement)) continue;
 
-  const defaultLabel = emailButton.dataset.defaultLabel ?? label.textContent ?? "[email]";
+  const defaultLabel =
+    emailButton.dataset.defaultLabel ?? label.textContent ?? "[email]";
   const copiedLabel = emailButton.dataset.copiedLabel ?? "[copied]";
   const failedLabel = emailButton.dataset.failedLabel ?? "[failed to copy]";
 

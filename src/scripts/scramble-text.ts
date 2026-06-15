@@ -59,10 +59,17 @@ function getAutoplay(element: ScrambleElement): ScrambleAutoplay {
 }
 
 function getInteractionTarget(element: ScrambleElement): HTMLElement {
-  return element.closest<HTMLElement>("a, button, input, select, textarea, [tabindex]") ?? element;
+  return (
+    element.closest<HTMLElement>(
+      "a, button, input, select, textarea, [tabindex]",
+    ) ?? element
+  );
 }
 
-function playScramble(element: ScrambleElement, options: PlayScrambleOptions = {}): void {
+function playScramble(
+  element: ScrambleElement,
+  options: PlayScrambleOptions = {},
+): void {
   const text = getText(element);
 
   cancelAnimation(element, true);
@@ -136,7 +143,9 @@ function initScrambleElement(element: ScrambleElement): void {
 }
 
 function initScrambleText(): void {
-  for (const element of document.querySelectorAll<HTMLElement>("[data-scramble]")) {
+  for (const element of document.querySelectorAll<HTMLElement>(
+    "[data-scramble]",
+  )) {
     initScrambleElement(element);
   }
 }

@@ -3,7 +3,10 @@ const bufferCache = new Map<string, AudioBuffer>();
 
 export function getAudioContext(): AudioContext {
   if (!audioContext) {
-    if (typeof window === "undefined" || typeof window.AudioContext === "undefined") {
+    if (
+      typeof window === "undefined" ||
+      typeof window.AudioContext === "undefined"
+    ) {
       throw new Error("Web Audio API is not supported in this environment.");
     }
 

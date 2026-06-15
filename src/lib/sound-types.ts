@@ -18,7 +18,10 @@ export interface UseSoundOptions {
   onStop?: () => void;
 }
 
-export type PlayFunction = (overrides?: { volume?: number; playbackRate?: number }) => void;
+export type PlayFunction = (overrides?: {
+  volume?: number;
+  playbackRate?: number;
+}) => void;
 
 export interface SoundControls {
   stop: () => void;
