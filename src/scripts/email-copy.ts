@@ -10,8 +10,7 @@ for (const emailButton of emailButtons) {
   const label = emailButton.querySelector("[data-copy-label]");
   if (!(label instanceof HTMLElement)) continue;
 
-  const defaultLabel =
-    emailButton.dataset.defaultLabel ?? label.textContent ?? "[email]";
+  const defaultLabel = emailButton.dataset.defaultLabel ?? label.textContent ?? "[email]";
   const copiedLabel = emailButton.dataset.copiedLabel ?? "[copied]";
   const failedLabel = emailButton.dataset.failedLabel ?? "[failed to copy]";
 

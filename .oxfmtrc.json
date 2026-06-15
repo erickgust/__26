@@ -1,7 +1,7 @@
 {
   "ignorePatterns": [],
   "sortTailwindcss": {
-    "stylesheet": "apps/web/src/styles/global.css",
+    "stylesheet": "src/styles/global.css",
     "preserveWhitespace": true
   }
 }
