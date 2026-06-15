@@ -25,7 +25,8 @@
     "rules": {
       "preset": "recommended",
       "a11y": {
-        "useValidAriaRole": "off"
+        "useValidAriaRole": "off",
+        "useHeadingContent": "off"
       }
     }
   },
