@@ -13,22 +13,22 @@
     "check": "biome check --write"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "13.5.0",
-    "@astrojs/sitemap": "3.7.2",
+    "@astrojs/cloudflare": "13.7.0",
+    "@astrojs/sitemap": "3.7.3",
     "animejs": "4.4.1",
-    "astro": "6.3.1",
+    "astro": "6.4.7",
     "clsx": "2.1.1",
-    "sharp": "0.34.5",
+    "sharp": "0.35.1",
     "tailwind-merge": "3.6.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
+    "@astrojs/check": "0.9.9",
     "@biomejs/biome": "2.5.0",
-    "@tailwindcss/vite": "4.3.0",
-    "lefthook": "2.1.6",
-    "tailwindcss": "4.3.0",
+    "@tailwindcss/vite": "4.3.1",
+    "lefthook": "2.1.9",
+    "tailwindcss": "4.3.1",
     "typescript": "6.0.3",
-    "wrangler": "4.90.1"
+    "wrangler": "4.100.0"
   },
   "packageManager": "bun@1.3.6"
 }
