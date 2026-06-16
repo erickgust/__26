@@ -1,7 +1,9 @@
+const FRAME_DELIMITER = "\n---FRAME---\n";
+
 const FPS = 20;
 const FRAME_DURATION = 1000 / FPS;
 
-const modules = import.meta.glob<string>("../ascii/*.txt", {
+const modules = import.meta.glob<string>("../ascii/chunks/*.txt", {
   query: "?raw",
   import: "default",
 });
@@ -27,7 +29,8 @@ async function initAsciiAnimation() {
   const keys = Object.keys(modules).sort();
   if (keys.length === 0) return;
 
-  const frames = await Promise.all(keys.map((key) => modules[key]()));
+  const chunks = await Promise.all(keys.map((key) => modules[key]()));
+  const frames = chunks.flatMap((chunk) => chunk.split(FRAME_DELIMITER));
 
   if (animationId !== null) return;
 

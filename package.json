@@ -10,7 +10,8 @@
     "deploy": "wrangler deploy",
     "astro": "astro",
     "check-types": "astro check",
-    "check": "biome check --write"
+    "check": "biome check --write",
+    "ascii:chunks": "bun scripts/build-ascii-chunks.ts"
   },
   "dependencies": {
     "@astrojs/cloudflare": "13.7.0",
