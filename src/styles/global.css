@@ -47,6 +47,7 @@ p {
   --color-white: oklch(0.903 0.012 286.153);
   --color-black: oklch(0.216 0.006 301.047);
 
+  --text-40: 2.5rem;
   --text-48: 3rem;
   --text-56: 3.5rem;
   --text-64: 4rem;
@@ -54,4 +55,96 @@ p {
   --text-15: 0.9375rem;
   --text-17: 1.0625rem;
   --text-18: 1.125rem;
+}
+
+.prose {
+  font-weight: 300;
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
+
+.prose > * + * {
+  margin-top: 0.75rem;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-sans);
+  font-weight: normal;
+  line-height: 1.2;
+  text-transform: none;
+}
+
+.prose h2 {
+  font-size: var(--text-2xl);
+  margin-top: 2.5rem;
+}
+
+.prose h3 {
+  font-size: var(--text-xl);
+  margin-top: 2rem;
+}
+
+.prose a {
+  color: var(--color-white);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:hover {
+  background-color: var(--color-white);
+  color: var(--color-blue);
+  text-decoration: none;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose ul {
+  list-style: none;
+  padding-left: 1.25rem;
+}
+
+.prose ul li {
+  position: relative;
+}
+
+.prose ul li::before {
+  content: "—";
+  position: absolute;
+  left: -1.25rem;
+  color: color-mix(in oklab, var(--color-white) 60%, transparent);
+}
+
+.prose ul li + li {
+  margin-top: 0.25rem;
+}
+
+.prose blockquote {
+  border-left: 1px solid
+    color-mix(in oklab, var(--color-white) 40%, transparent);
+  padding-left: 1rem;
+  font-style: italic;
+  color: color-mix(in oklab, var(--color-white) 85%, transparent);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  background-color: color-mix(in oklab, var(--color-white) 15%, transparent);
+  padding: 0.05rem 0.3rem;
+  text-transform: none;
+}
+
+.prose pre {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
 }

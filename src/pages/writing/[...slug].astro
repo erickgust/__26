@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from "astro:content";
+import { SITE } from "../../data/site";
+import Layout from "../../layouts/Layout.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writing", ({ data }) => !data.draft);
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "2-digit",
+});
+---
+
+<Layout title={`${post.data.title} — ${SITE.name}`}>
+  <main
+    id="main-content"
+    class="min-h-svh px-6 lg:px-8 py-16 selection:bg-white selection:text-blue"
+  >
+    <article class="max-w-160 mx-auto space-y-8">
+      <header class="space-y-2">
+        <a
+          href="/writing"
+          class="inline-block text-13 uppercase px-0.5 -mx-0.5 hover:bg-white hover:text-blue"
+        >
+          [ ← all writing ]
+        </a>
+        <time
+          class="block text-13 text-white/60"
+          datetime={post.data.pubDate.toISOString()}
+        >
+          {dateFormatter.format(post.data.pubDate)}
+        </time>
+        <h1
+          class="font-sans text-40 sm:text-48 lg:text-56 lg:leading-tight normal-case"
+        >
+          {post.data.title}
+        </h1>
+      </header>
+
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+  </main>
+</Layout>

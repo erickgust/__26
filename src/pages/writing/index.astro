@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import { SITE } from "../../data/site";
+import Layout from "../../layouts/Layout.astro";
+
+export const prerender = true;
+
+const posts = (await getCollection("writing", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "2-digit",
+});
+---
+
+<Layout title={`writing — ${SITE.name}`}>
+  <main
+    id="main-content"
+    class="min-h-svh px-6 lg:px-8 py-16 selection:bg-white selection:text-blue"
+  >
+    <div class="max-w-160 mx-auto space-y-12">
+      <header class="space-y-4">
+        <a
+          href="/"
+          class="inline-block text-13 uppercase px-0.5 -mx-0.5 hover:bg-white hover:text-blue"
+        >
+          [ ← home ]
+        </a>
+        <h1
+          class="font-sans text-48 sm:text-56 lg:text-64 lg:leading-none normal-case"
+        >
+          Writing
+        </h1>
+      </header>
+
+      {
+        posts.length === 0 ? (
+          <p class="text-sm font-light">Nothing published yet, check back soon.</p>
+        ) : (
+          <ul class="space-y-8">
+            {posts.map((post) => (
+              <li class="relative pl-4 border-l border-white/40">
+                <a class="group block" href={`/writing/${post.id}`}>
+                  <time
+                    class="block text-13 text-white/60"
+                    datetime={post.data.pubDate.toISOString()}
+                  >
+                    {dateFormatter.format(post.data.pubDate)}
+                  </time>
+                  <h2 class="font-sans text-2xl lg:text-3xl normal-case mt-1 w-fit px-0.5 -mx-0.5 group-hover:bg-white group-hover:text-blue">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-xs font-light mt-2 text-white/80">
+                    {post.data.description}
+                  </p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </main>
+</Layout>
