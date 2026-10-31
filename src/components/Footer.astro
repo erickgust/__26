@@ -11,7 +11,9 @@ import ScrambleText from "./ui/ScrambleText.astro";
         <p class="font-light lg:mb-1 text-18 lg:text-xl">
           <ScrambleIn text="( Reach out )" />
         </p>
-        <strong class="font-normal text-3xl lg:text-4xl lowercase">
+        <strong
+          class="font-normal text-3xl lg:text-4xl lowercase wrap-anywhere"
+        >
           <a
             class="lg:hidden hover:bg-white hover:text-black"
             href={`mailto:${SITE.email}`}

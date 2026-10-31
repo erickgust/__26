@@ -30,6 +30,11 @@ for (const emailButton of emailButtons) {
   const animateLabelTo = (text: string) => {
     stopAnimation();
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      label.textContent = text;
+      return;
+    }
+
     activeAnimation = animate(label, {
       innerHTML: scrambleText({
         text,
@@ -55,6 +60,8 @@ for (const emailButton of emailButtons) {
       animateLabelTo(copiedLabel);
     } catch {
       animateLabelTo(failedLabel);
+      // Clipboard denied: fall back to the mail client so the address stays reachable.
+      window.location.href = `mailto:${email}`;
     }
 
     resetTimer = setTimeout(() => {
