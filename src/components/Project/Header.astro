@@ -6,9 +6,10 @@ interface Props {
   tech: string;
   href: string;
   label: string;
+  project: string;
 }
 
-const { tech, href, label } = Astro.props;
+const { tech, href, label, project } = Astro.props;
 ---
 
 <div
@@ -23,6 +24,7 @@ const { tech, href, label } = Astro.props;
     href={href}
     target="_blank"
     rel="noopener noreferrer"
+    aria-label={`${label} for ${project} (opens in new tab)`}
     class="text-blue hover:text-white hover:bg-blue py-px px-0.5 uppercase"
   >
     <ScrambleText

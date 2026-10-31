@@ -18,7 +18,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout title={SITE.title}>
   <section
     aria-label="Introduction"
-    class="min-h-svh lg:h-svh flex flex-col gap-8 justify-between"
+    class="relative min-h-svh lg:h-svh flex flex-col gap-8 justify-between"
   >
     <Header />
     <pre
@@ -27,6 +27,15 @@ import Layout from "../layouts/Layout.astro";
       role="img"
       class="hidden lg:block w-full text-center select-none overflow-hidden text-xs"
     >{TITLE_TEXT}</pre>
+    <button
+      type="button"
+      data-ascii-toggle
+      aria-label="Pause animation"
+      aria-pressed="false"
+      class="hidden lg:motion-safe:block absolute bottom-4 right-8 cursor-pointer py-px px-0.5 bg-blue hover:bg-white hover:text-blue"
+    >
+      [||]
+    </button>
   </section>
 
   <main
@@ -40,6 +49,7 @@ import Layout from "../layouts/Layout.astro";
         <Project.Header
           tech="Tailwind + TS + Next.js"
           href="https://qsmpco.netlify.app/"
+          project="QSMP.co"
           label="Live Site"
         />
         <Project.Body>
@@ -64,6 +74,7 @@ import Layout from "../layouts/Layout.astro";
         <Project.Header
           tech="React.js + TS + Tailwind"
           href="https://erickgust-tmdb.netlify.app/"
+          project="TMDB Movies"
           label="Live Site"
         />
         <Project.Body>
@@ -88,6 +99,7 @@ import Layout from "../layouts/Layout.astro";
         <Project.Header
           tech="React.js + TS + Node.js"
           href="https://github.com/erickgust/my-contacts-front/"
+          project="MyContacts"
           label="Repository"
         />
         <Project.Body>

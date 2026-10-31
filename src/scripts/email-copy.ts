@@ -14,6 +14,7 @@ for (const emailButton of emailButtons) {
     emailButton.dataset.defaultLabel ?? label.textContent ?? "[email]";
   const copiedLabel = emailButton.dataset.copiedLabel ?? "[copied]";
   const failedLabel = emailButton.dataset.failedLabel ?? "[failed to copy]";
+  const status = emailButton.parentElement?.querySelector("[data-copy-status]");
 
   let resetTimer: ReturnType<typeof setTimeout> | null = null;
   let activeAnimation: JSAnimation | null = null;
@@ -55,17 +56,24 @@ for (const emailButton of emailButtons) {
       resetTimer = null;
     }
 
+    if (status) status.textContent = "";
+
     try {
       await navigator.clipboard.writeText(email);
       animateLabelTo(copiedLabel);
+      if (status) status.textContent = "Email address copied";
     } catch {
       animateLabelTo(failedLabel);
-      // Clipboard denied: fall back to the mail client so the address stays reachable.
+      if (status) {
+        status.textContent =
+          "Couldn't copy the email address. Opening your mail app.";
+      }
       window.location.href = `mailto:${email}`;
     }
 
     resetTimer = setTimeout(() => {
       animateLabelTo(defaultLabel);
+      if (status) status.textContent = "";
     }, 2000);
   });
 }

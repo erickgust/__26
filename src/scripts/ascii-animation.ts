@@ -9,6 +9,8 @@ const modules = import.meta.glob<string>("../ascii/chunks/*.txt", {
 });
 
 let animationId: number | null = null;
+let frameIndex = 0;
+let direction = 1;
 
 function stopAnimation() {
   if (animationId !== null) {
@@ -34,8 +36,6 @@ async function initAsciiAnimation() {
 
   if (animationId !== null) return;
 
-  let frameIndex = 0;
-  let direction = 1;
   let lastTimestamp = 0;
 
   function tick(timestamp: number) {
@@ -52,8 +52,26 @@ async function initAsciiAnimation() {
   animationId = requestAnimationFrame(tick);
 }
 
+let paused = false;
+
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
+    stopAnimation();
+  } else if (!paused) {
+    initAsciiAnimation();
+  }
+});
+
+document.addEventListener("click", (event) => {
+  const toggle =
+    event.target instanceof Element &&
+    event.target.closest("button[data-ascii-toggle]");
+  if (!toggle) return;
+
+  paused = !paused;
+  toggle.textContent = paused ? "[|>]" : "[||]";
+  toggle.setAttribute("aria-pressed", String(paused));
+  if (paused) {
     stopAnimation();
   } else {
     initAsciiAnimation();
