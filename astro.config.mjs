@@ -2,6 +2,15 @@ import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField, fontProviders } from "astro/config";
+import subsets from "./src/assets/fonts/subsets.json" with { type: "json" };
+
+// Core files come first: Layout.astro preloads variant [0] of each family.
+const split = (name, descriptors) =>
+  ["core", "ext"].map((part) => ({
+    src: [`./src/assets/fonts/${name}-${part}.woff2`],
+    unicodeRange: subsets[name][part],
+    ...descriptors,
+  }));
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,13 +21,10 @@ export default defineConfig({
       name: "PP Fraktion Mono Variable",
       cssVariable: "--font-pp-fraktion-mono",
       options: {
-        variants: [
-          {
-            src: ["./src/assets/fonts/PPFraktionMono-Variable.woff2"],
-            weight: "100 900",
-            style: "normal",
-          },
-        ],
+        variants: split("PPFraktionMono-Variable", {
+          weight: "100 900",
+          style: "normal",
+        }),
       },
     },
     {
@@ -26,13 +32,10 @@ export default defineConfig({
       name: "Geist Pixel",
       cssVariable: "--font-geist-pixel",
       options: {
-        variants: [
-          {
-            src: ["./src/assets/fonts/GeistPixel-Square.woff2"],
-            weight: "normal",
-            style: "normal",
-          },
-        ],
+        variants: split("GeistPixel-Square", {
+          weight: "normal",
+          style: "normal",
+        }),
       },
     },
   ],

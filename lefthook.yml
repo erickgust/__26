@@ -5,5 +5,5 @@ pre-commit:
   parallel: true
   jobs:
     - name: biome
-      run: bun biome check --write {staged_files}
+      run: bun biome check --write --no-errors-on-unmatched --files-ignore-unknown=true {staged_files}
       stage_fixed: true

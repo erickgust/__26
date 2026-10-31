@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 
-import { Font } from "astro:assets";
+import { Font, fontData } from "astro:assets";
 import { SITE } from "../data/site";
 
 interface Props {
@@ -9,6 +9,12 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+// Preload only the core subset (variant [0]); extended files load via unicode-range.
+const corePreloads = [
+  fontData["--font-pp-fraktion-mono"][0],
+  fontData["--font-geist-pixel"][0],
+].map((font) => font.src[0].url);
 ---
 
 <!doctype html>
@@ -64,8 +70,13 @@ const { title } = Astro.props;
 
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <Font cssVariable="--font-pp-fraktion-mono" preload />
-    <Font cssVariable="--font-geist-pixel" preload />
+    <Font cssVariable="--font-pp-fraktion-mono" />
+    <Font cssVariable="--font-geist-pixel" />
+    {
+      corePreloads.map((href) => (
+        <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+      ))
+    }
 
     <script
       type="application/ld+json"
