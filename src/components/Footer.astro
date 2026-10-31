@@ -34,7 +34,8 @@ import ScrambleText from "./ui/ScrambleText.astro";
               data-scramble-mode="intro"
               data-scramble-text={SITE.email}
               data-scramble-trigger="scroll"
-              aria-hidden="true">{SITE.email}</span
+              aria-hidden="true"
+              >{SITE.email}</span
             >
           </button>
         </strong>
@@ -65,7 +66,7 @@ import ScrambleText from "./ui/ScrambleText.astro";
 
       <p class="text-end mt-2 lg:mt-0">
         ©<time datetime="2026">2026</time>
-        <br class="hidden lg:block" />
+        <br class="hidden lg:block">
         all rights reserved
       </p>
     </div>
@@ -73,5 +74,5 @@ import ScrambleText from "./ui/ScrambleText.astro";
 </footer>
 
 <script>
-  import "../scripts/email-copy";
+import "../scripts/email-copy";
 </script>

@@ -11,12 +11,10 @@ const { from, to } = Astro.props;
   class="text-blue text-13 font-normal text-nowrap shrink-0 ml-4 mt-1 lg:mt-0"
 >
   <time datetime={from}>{from}</time>
-  {
-    to && (
+  {to && (
       <>
         {" - "}
         <time datetime={to}>{to}</time>
       </>
-    )
-  }
+    )}
 </div>

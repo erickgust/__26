@@ -20,63 +20,61 @@ const corePreloads = [
 <!doctype html>
 <html lang="en" class="dark">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       rel="icon"
       type="image/svg+xml"
       href="/favicon-light.svg"
       media="(prefers-color-scheme: light)"
-    />
+    >
     <link
       rel="icon"
       type="image/svg+xml"
       href="/favicon.svg"
       media="(prefers-color-scheme: dark)"
-    />
-    <meta name="generator" content={Astro.generator} />
+    >
+    <meta name="generator" content={Astro.generator}>
     <title>{title}</title>
-    <meta name="description" content={SITE.description} />
-    <link rel="canonical" href={Astro.url.href} />
-    <meta name="theme-color" content="#2424E6" />
+    <meta name="description" content={SITE.description}>
+    <link rel="canonical" href={Astro.url.href}>
+    <meta name="theme-color" content="#2424E6">
 
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={SITE.description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={SITE.url} />
-    <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content="https://erickgust.dev/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={SITE.description}>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={SITE.url}>
+    <meta property="og:site_name" content={SITE.name}>
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://erickgust.dev/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
     <meta
       property="og:image:alt"
       content="Minimal blue card with 'erickgust.dev', 'web developer', and a small star symbol in the top right corner"
-    />
+    >
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={SITE.description} />
-    <meta name="twitter:image" content="https://erickgust.dev/og-image.png" />
-    <meta name="twitter:image:type" content="image/png" />
-    <meta name="twitter:image:width" content="1200" />
-    <meta name="twitter:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={SITE.description}>
+    <meta name="twitter:image" content="https://erickgust.dev/og-image.png">
+    <meta name="twitter:image:type" content="image/png">
+    <meta name="twitter:image:width" content="1200">
+    <meta name="twitter:image:height" content="630">
     <meta
       name="twitter:image:alt"
       content="Minimal blue card with 'erickgust.dev', 'web developer', and a small star symbol in the top right corner"
-    />
+    >
 
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml">
 
     <Font cssVariable="--font-pp-fraktion-mono" />
     <Font cssVariable="--font-geist-pixel" />
-    {
-      corePreloads.map((href) => (
+    {corePreloads.map((href) => (
         <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
-      ))
-    }
+      ))}
 
     <script
       type="application/ld+json"
@@ -105,7 +103,7 @@ const corePreloads = [
     <slot />
 
     <script>
-      import "../scripts/click-sound";
+    import "../scripts/click-sound";
     </script>
   </body>
 </html>

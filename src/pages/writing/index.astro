@@ -36,8 +36,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
         </h1>
       </header>
 
-      {
-        posts.length === 0 ? (
+      {posts.length === 0 ? (
           <p class="text-sm font-light">Nothing published yet, check back soon.</p>
         ) : (
           <ul class="space-y-8">
@@ -60,8 +59,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
               </li>
             ))}
           </ul>
-        )
-      }
+        )}
     </div>
   </main>
 </Layout>
