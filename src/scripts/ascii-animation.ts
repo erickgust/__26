@@ -69,7 +69,7 @@ document.addEventListener("click", (event) => {
   if (!toggle) return;
 
   paused = !paused;
-  toggle.textContent = paused ? "[|>]" : "[||]";
+  toggle.textContent = paused ? "[▶]" : "[⬛]";
   toggle.setAttribute("aria-pressed", String(paused));
   if (paused) {
     stopAnimation();
