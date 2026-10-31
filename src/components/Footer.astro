@@ -22,7 +22,7 @@ import ScrambleText from "./ui/ScrambleText.astro";
           </a>
           <button
             type="button"
-            aria-label="Copy email address to clipboard"
+            aria-label={`Copy ${SITE.email}`}
             class="hidden lg:inline relative cursor-pointer before:absolute before:-inset-y-2 before:inset-x-0 before:content-[''] after:block after:h-0 after:overflow-hidden after:invisible after:pointer-events-none after:content-[attr(data-copied-label)]"
             data-email={SITE.email}
             data-default-label={SITE.email}
@@ -40,6 +40,7 @@ import ScrambleText from "./ui/ScrambleText.astro";
               >{SITE.email}</span
             >
           </button>
+          <span role="status" class="sr-only" data-copy-status></span>
         </strong>
       </div>
     </div>

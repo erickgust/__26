@@ -33,9 +33,10 @@ FEATURES = ["ccmp", "locl", "mark", "mkmk", "kern", "liga", "clig", "calt",
 
 BASE = set(range(0x20, 0x7F)) | set(range(0xA0, 0x180))
 # ASCII, nbsp, curly quotes, dashes, ellipsis, plus the site-chrome glyphs
-# ← (writing pages), ↗ and © (home) so no page needs the extended file for them.
+# ← (writing pages), ↗, ©, ▶ and ⬛ (home) so no page needs the extended file for them.
 CORE = set(range(0x20, 0x7F)) | {0xA0, 0x2018, 0x2019, 0x201C, 0x201D,
-                                 0x2013, 0x2014, 0x2026, 0x2190, 0x2197, 0xA9}
+                                 0x2013, 0x2014, 0x2026, 0x2190, 0x2197, 0xA9,
+                                 0x25B6, 0x2B1B}
 
 
 def used_codepoints():
