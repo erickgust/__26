@@ -4,9 +4,12 @@ import FaleLogo from "../assets/experiences/falecomigo.svg";
 import QuackSLogo from "../assets/experiences/quacks.svg";
 import UniLogo from "../assets/experiences/uni.svg";
 import UpLogo from "../assets/experiences/up.svg";
+import ImageHoist from "../assets/images/hoist.png";
 import ImageMyContacts from "../assets/images/mycontacts.png";
 import ImageQSMP from "../assets/images/qsmp.png";
 import ImageTMDB from "../assets/images/tmdb.png";
+import VideoHoistMp4 from "../assets/videos/hoist.mp4";
+import VideoHoistWebm from "../assets/videos/hoist.webm";
 import * as Experience from "../components/Experience";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -43,6 +46,35 @@ import Layout from "../layouts/Layout.astro";
   >
     <section id="projects" class="max-w-266 mx-auto space-y-8 scroll-mt-8">
       <h2 class="sr-only">Projects</h2>
+
+      <Project.Root>
+        <Project.Header
+          tech="Next.js + TS + Supabase"
+          href="https://hoist-img.vercel.app/"
+          project="hoist"
+          label="Live Site"
+        />
+        <Project.Body>
+          <Project.Title>hoist</Project.Title>
+          <Project.Description>
+            <p>
+              An image uploader that gives each image a short link to share.
+              Images can be dropped, pasted from the clipboard, or picked from
+              the file system.
+            </p>
+            <p>
+              Built with Next.js and Supabase Storage. The server checks each
+              file's real format instead of trusting its extension, and a daily
+              cron job cleans up old images.
+            </p>
+          </Project.Description>
+          <Project.Preview
+            src={ImageHoist}
+            alt="hoist website preview"
+            video={{ webm: VideoHoistWebm, mp4: VideoHoistMp4 }}
+          />
+        </Project.Body>
+      </Project.Root>
 
       <Project.Root>
         <Project.Header
@@ -86,7 +118,7 @@ import Layout from "../layouts/Layout.astro";
               certification.
             </p>
             <p>
-              built in TypeScript and React to explore React Query features
+              Built in TypeScript and React to explore React Query features
               combined with React Router.
             </p>
           </Project.Description>
