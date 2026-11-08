@@ -10,6 +10,8 @@ import ImageQSMP from "../assets/images/qsmp.png";
 import ImageTMDB from "../assets/images/tmdb.png";
 import VideoHoistMp4 from "../assets/videos/hoist.mp4";
 import VideoHoistWebm from "../assets/videos/hoist.webm";
+import VideoQSMPMp4 from "../assets/videos/qsmp.mp4";
+import VideoQSMPWebm from "../assets/videos/qsmp.webm";
 import * as Experience from "../components/Experience";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -97,7 +99,11 @@ import Layout from "../layouts/Layout.astro";
               project updates.
             </p>
           </Project.Description>
-          <Project.Preview src={ImageQSMP} alt="QSMP website preview" />
+          <Project.Preview
+            src={ImageQSMP}
+            alt="QSMP website preview"
+            video={{ webm: VideoQSMPWebm, mp4: VideoQSMPMp4 }}
+          />
         </Project.Body>
       </Project.Root>
 
