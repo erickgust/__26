@@ -34,7 +34,23 @@ const { src, alt, video } = Astro.props;
     alt={alt}
     class="relative w-full transition-opacity duration-150 ease-out"
   />
+  <canvas
+    data-image-reveal
+    aria-hidden="true"
+    class="absolute inset-0 size-full bg-white"
+  ></canvas>
+  <noscript>
+    <style is:inline>
+    canvas[data-image-reveal] {
+      display: none;
+    }
+    </style>
+  </noscript>
 </div>
+
+<script>
+import "../../scripts/image-reveal";
+</script>
 
 <script>
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
